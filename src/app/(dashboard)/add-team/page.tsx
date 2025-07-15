@@ -10,7 +10,7 @@ const page = () => {
     console.log(data);
   };
   return (
-    <div className="w-[100%] flex-1">
+    <div className="w-full flex-1">
       <h1 className="text-center text-2xl font-bold text-emerald-400 mb-2">
         Add New Project
       </h1>
