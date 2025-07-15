@@ -37,7 +37,7 @@ const Login = () => {
         );
       }
 
-      router.push("/main"); // redirect after login
+      router.push("/"); // redirect after login
     } catch (err) {
       console.log(err);
     }

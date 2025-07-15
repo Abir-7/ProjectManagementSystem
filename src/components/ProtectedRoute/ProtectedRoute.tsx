@@ -49,7 +49,7 @@ const ProtectedRoute = ({ children, role }: ProtectedRouteProps) => {
   useEffect(() => {
     if (!isLoading && !isMeLoading) {
       if (!user || user.role !== role) {
-        router.replace("/auth/login");
+        router.replace("/login");
       }
     }
   }, [user, role, isLoading, isMeLoading, router]);

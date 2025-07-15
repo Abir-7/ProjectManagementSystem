@@ -1,8 +1,7 @@
-"use client";
 import React from "react";
 
 const page = () => {
-  return <div>TEAM</div>;
+  return <div>ADD CORE USER</div>;
 };
 
 export default page;
