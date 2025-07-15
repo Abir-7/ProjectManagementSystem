@@ -7,8 +7,12 @@ const layout = ({ children }: { children: ReactNode }) => {
       <AppSidebar />
 
       <main className="w-full">
-        <div className="p-2 bg-emerald-400">
+        <div className="p-2 bg-emerald-400 flex justify-between">
           <SidebarTrigger className="text-white hover:text-emerald-400" />
+          <div className="flex justify-center items-center gap-2">
+            <p className="text-white font-semibold"> Hello, Abir</p>
+            <div className="w-13 h-13 bg-white rounded-full"></div>
+          </div>
         </div>
         {children}
       </main>
