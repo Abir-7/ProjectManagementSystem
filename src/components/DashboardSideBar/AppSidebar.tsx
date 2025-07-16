@@ -31,6 +31,16 @@ const items = [
     url: "/admins&leads",
     icon: Calendar,
   },
+  {
+    title: "Add Team",
+    url: "/add-team",
+    icon: Calendar,
+  },
+  {
+    title: "Add Employee",
+    url: "/add-employee",
+    icon: Calendar,
+  },
   // {
   //   title: "Search",
   //   url: "#",

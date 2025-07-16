@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { ChevronDown } from "lucide-react";
 import React from "react";
 import { useFormContext, useFieldArray, FieldValues } from "react-hook-form";
 
@@ -23,62 +22,49 @@ const FormArrayInput: React.FC<PhasesInputProps> = ({
   const { fields, append, remove } = useFieldArray({ control, name });
 
   return (
-    <div className="mb-4 relative">
+    <div className="mb-4">
       {label && <label className="block mb-2">{label}</label>}
       {fields.map((field, index) => (
         <div
           key={field.id}
-          className="flex flex-col   lg:flex-row gap-2 mb-2 border p-2   rounded"
+          className="flex flex-col md:flex-row gap-2 mb-2 border p-2 rounded"
         >
           {/* Select input for phase name */}
-
-          <div>
-            {label && <label className="block mb-2">{"Phase Name"}</label>}
-            <div className="relative w-max ">
-              <select
-                {...register(`${name}.${index}.name` as const)}
-                className="border appearance-none pe-10 rounded p-2 flex-1"
-                defaultValue=""
-              >
-                <option value="" disabled>
-                  Select Phase Name
-                </option>
-                {phaseOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-
-              <ChevronDown
-                className="absolute top-1/2 right-2 -translate-y-1/2 pointer-events-none"
-                size={15}
-              ></ChevronDown>
-            </div>
-          </div>
-          <div>
-            {label && <label className="block mb-2">{"Phase Budget"}</label>}
-            <input
-              {...register(`${name}.${index}.budget` as const, {
-                valueAsNumber: true,
-              })}
-              type="number"
-              placeholder="Budget"
-              className="border rounded p-2 w-24"
-            />
-          </div>
-          <div>
-            {label && <label className="block mb-2">{"Phase Deadline"}</label>}
-            <input
-              {...register(`${name}.${index}.endTime` as const)}
-              type="date"
-              className="border rounded p-2"
-            />
-          </div>
-
+          <select
+            {...register(`${name}.${index}.name` as const)}
+            className="border rounded p-2 flex-1"
+            defaultValue=""
+          >
+            <option value="" disabled>
+              Select Phase Name
+            </option>
+            {phaseOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+          <input
+            {...register(`${name}.${index}.budget` as const, {
+              valueAsNumber: true,
+            })}
+            type="number"
+            placeholder="Budget"
+            className="border rounded p-2 w-24"
+          />
+          <input
+            {...register(`${name}.${index}.startTime` as const)}
+            type="datetime-local"
+            className="border rounded p-2"
+          />
+          <input
+            {...register(`${name}.${index}.endTime` as const)}
+            type="datetime-local"
+            className="border rounded p-2"
+          />
           <button
             type="button"
-            className="text-white mt-auto mb-1 py-1 px-3 h-9 rounded-md bg-red-500 ml-2"
+            className="text-red-600 ml-2"
             onClick={() => remove(index)}
           >
             Remove
@@ -87,7 +73,7 @@ const FormArrayInput: React.FC<PhasesInputProps> = ({
       ))}
       <button
         type="button"
-        className="bg-blue-500 text-white px-3 py-1 rounded"
+        className="  shadow shadow-emerald-400 bg-gray-100 px-2 py-0.5 rounded-sm hover:bg-gray-200"
         onClick={() =>
           append({ name: "", budget: 0, startTime: "", endTime: "" })
         }

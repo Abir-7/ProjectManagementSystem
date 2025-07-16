@@ -3,7 +3,17 @@
 import FormArrayInput from "@/components/Form/FormArrayInput";
 import FormInput, { FormInputType } from "@/components/Form/FormInput";
 import FormProviders from "@/components/Form/FormProviders";
+import FormSubmitButton from "@/components/Form/FormSubmitButton";
 import React from "react";
+
+const phaseOption = [
+  "API+Integration",
+  "Deployment",
+  "R&D",
+  "UI/UX",
+  "Frontend",
+  "AI Implement",
+];
 
 const page = () => {
   const onSubmit = async (data: any) => {
@@ -32,8 +42,9 @@ const page = () => {
           <FormArrayInput
             name="phase"
             label="Phase"
-            phaseOptions={["abc", "ccc"]}
+            phaseOptions={phaseOption}
           />
+          <FormSubmitButton text="Add New Project"></FormSubmitButton>
         </FormProviders>
       </div>
     </div>
