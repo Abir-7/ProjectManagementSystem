@@ -65,13 +65,18 @@ const page = () => {
   };
 
   return (
-    <div className="h-[87.5vh]">
-      <div className="p-4 shadow">Add Project</div>
-      <div className=" h-full overflow-y-auto">
+    <div className="h-[calc(100vh-112.5px)]">
+      <div className="p-4 shadow font-bold text-center">Add Project</div>
+      <div className=" h-full  overflow-y-auto pb-2">
         <BaseForm
           onSubmit={handleSubmit}
           defaultValues={{
             name: "", // ✅ string not undefined
+            client_name: "",
+            budget: "",
+            sheet_link: "",
+            team_link: "",
+            phases: [{ phase_name: "", phase_budget: "", deadline: "" }],
           }}
         >
           <FormInput name="name" label="Project Name"></FormInput>
@@ -88,7 +93,7 @@ const page = () => {
             label="Phases"
             fields={[
               {
-                name: "Phase Name",
+                name: "phase_name",
                 label: "Phase Name",
                 type: "select",
                 options: [
@@ -98,7 +103,7 @@ const page = () => {
                 ],
               },
               {
-                name: "budget",
+                name: "phase_budget",
                 label: "Budget",
                 type: "number",
                 placeholder: "e.g. 1000",

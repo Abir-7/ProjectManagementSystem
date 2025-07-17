@@ -1,5 +1,5 @@
 "use client";
-import { Home, Inbox } from "lucide-react";
+import { Calendar, Home, Inbox } from "lucide-react";
 
 import {
   Sidebar,
@@ -26,21 +26,21 @@ const items = [
     url: "/add-project",
     icon: Inbox,
   },
-  // {
-  //   title: "Add Admins & Leads",
-  //   url: "/admins&leads",
-  //   icon: Calendar,
-  // },
-  // {
-  //   title: "Add Team",
-  //   url: "/add-team",
-  //   icon: Calendar,
-  // },
-  // {
-  //   title: "Add Employee",
-  //   url: "/add-employee",
-  //   icon: Calendar,
-  // },
+  {
+    title: "Add Admins & Leads",
+    url: "/admins&leads",
+    icon: Calendar,
+  },
+  {
+    title: "Add Team",
+    url: "/add-team",
+    icon: Calendar,
+  },
+  {
+    title: "Add Employee",
+    url: "/add-employee",
+    icon: Calendar,
+  },
   // {
   //   title: "Search",
   //   url: "#",

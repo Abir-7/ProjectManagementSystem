@@ -52,7 +52,7 @@ export const FormInputArray: React.FC<FormInputArrayProps> = ({
                 {fieldDef.type === "select" ? (
                   <select
                     {...register(`${name}.${index}.${fieldDef.name}`)}
-                    className="w-full py-[5.5px] text-sm text-gray-400  border rounded-md"
+                    className="w-full py-[5.5px] text-sm p-2 appearance-none border rounded-md"
                   >
                     <option value="">Select {fieldDef.label}</option>
                     {fieldDef.options?.map((opt) => (
