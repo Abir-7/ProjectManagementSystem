@@ -1,0 +1,42 @@
+"use client";
+
+import React from "react";
+import {
+  useForm,
+  FormProvider,
+  UseFormProps,
+  FieldValues,
+} from "react-hook-form";
+
+type BaseFormProps<T extends FieldValues> = {
+  defaultValues: UseFormProps<T>["defaultValues"];
+  onSubmit: (data: T) => void;
+  children: React.ReactNode;
+  className?: string;
+};
+
+export function BaseForm<T extends FieldValues>({
+  defaultValues,
+  onSubmit,
+  children,
+  className = "",
+}: BaseFormProps<T>) {
+  const methods = useForm<T>({ defaultValues });
+
+  return (
+    <FormProvider {...methods}>
+      <form
+        onSubmit={methods.handleSubmit(onSubmit)}
+        className={`space-y-6 mx-2 md:mx-4 lg:mx-6  mt-8 ${className}`}
+      >
+        {children}
+        <button
+          type="submit"
+          className="w-full bg-emerald-400 text-white py-2 px-4 rounded hover:bg-emerald-500"
+        >
+          Submit
+        </button>
+      </form>
+    </FormProvider>
+  );
+}
