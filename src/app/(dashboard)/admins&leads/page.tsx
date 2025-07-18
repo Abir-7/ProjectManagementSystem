@@ -1,147 +1,94 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 import React from "react";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { BaseForm } from "@/components/ShadCN_Form/BaseForm";
+import { FormInput } from "@/components/ShadCN_Form/FormInput";
 
 const Page: React.FC = () => {
+  const onSubmit = async (data: any) => {
+    console.log(data);
+  };
+
   return (
     <div className="flex w-full  flex-col gap-6 ">
       <Tabs defaultValue="branch">
         <TabsList className="mx-auto mt-2">
+          <TabsTrigger value="branch">Branch</TabsTrigger>
+          <TabsTrigger value="manager">General Manager</TabsTrigger>
+          <TabsTrigger value="supervisor">Supervisor</TabsTrigger>
           <TabsTrigger value="leader">Leader</TabsTrigger>
           <TabsTrigger value="co-leader">Co-leader</TabsTrigger>
-          <TabsTrigger value="super-visor">Super Visor</TabsTrigger>
-          <TabsTrigger value="manager">General Manager</TabsTrigger>
-          <TabsTrigger value="branch">Branch</TabsTrigger>
         </TabsList>
-        <TabsContent value="leader">
-          <Card className="border-none shadow-none">
-            <CardHeader>
-              <CardTitle>Add Leader</CardTitle>
-              {/* <CardDescription>
-                Make changes to your account here. Click save when you&apos;re
-                done.
-              </CardDescription> */}
-            </CardHeader>
-            <CardContent className="grid gap-6">
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-name">Name</Label>
-                <Input id="tabs-demo-name" defaultValue="Pedro Duarte" />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-username">Username</Label>
-                <Input id="tabs-demo-username" defaultValue="@peduarte" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Save changes</Button>
-            </CardFooter>
-          </Card>
-        </TabsContent>
+
         <TabsContent value="co-leader">
-          <Card className="border-none shadow-none">
-            <CardHeader>
-              <CardTitle>Password</CardTitle>
-              <CardDescription>
-                Change your password here. After saving, you&apos;ll be logged
-                out.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-6">
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-current">Current password</Label>
-                <Input id="tabs-demo-current" type="password" />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-new">New password</Label>
-                <Input id="tabs-demo-new" type="password" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Save password</Button>
-            </CardFooter>
-          </Card>
+          <BaseForm
+            onSubmit={onSubmit}
+            defaultValues={{ fullName: "", email: "", password: "" }}
+          >
+            <h1 className="font-semibold text-emerald-400 ">
+              Co-Leader Details
+            </h1>
+            <FormInput name="fullName" label="Name"></FormInput>
+            <FormInput name="email" label="Email"></FormInput>
+            <FormInput name="password" label="Password"></FormInput>
+          </BaseForm>
         </TabsContent>
-        <TabsContent value="super-visor">
-          <Card className="border-none shadow-none">
-            <CardHeader>
-              <CardTitle>Password</CardTitle>
-              <CardDescription>
-                Change your password here. After saving, you&apos;ll be logged
-                out.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-6">
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-current">Current password</Label>
-                <Input id="tabs-demo-current" type="password" />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-new">New password</Label>
-                <Input id="tabs-demo-new" type="password" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Save password</Button>
-            </CardFooter>
-          </Card>
+        <TabsContent value="leader">
+          <BaseForm
+            onSubmit={onSubmit}
+            defaultValues={{ fullName: "", email: "", password: "" }}
+          >
+            <h1 className="font-semibold text-emerald-400 ">Leader Details</h1>
+            <FormInput name="fullName" label="Name"></FormInput>
+            <FormInput name="email" label="Email"></FormInput>
+            <FormInput name="password" label="Password"></FormInput>
+          </BaseForm>
+        </TabsContent>
+        <TabsContent value="supervisor">
+          <BaseForm
+            onSubmit={onSubmit}
+            defaultValues={{ fullName: "", email: "", password: "" }}
+          >
+            <h1 className="font-semibold text-emerald-400 ">
+              Supervisor Details
+            </h1>
+            <FormInput name="fullName" label="Name"></FormInput>
+            <FormInput name="email" label="Email"></FormInput>
+            <FormInput name="password" label="Password"></FormInput>
+          </BaseForm>
         </TabsContent>
         <TabsContent value="manager">
-          <Card className="border-none shadow-none">
-            <CardHeader>
-              <CardTitle>Password</CardTitle>
-              <CardDescription>
-                Change your password here. After saving, you&apos;ll be logged
-                out.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-6">
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-current">Current password</Label>
-                <Input id="tabs-demo-current" type="password" />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-new">New password</Label>
-                <Input id="tabs-demo-new" type="password" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Save password</Button>
-            </CardFooter>
-          </Card>
+          <BaseForm
+            onSubmit={onSubmit}
+            defaultValues={{ fullName: "", email: "", password: "" }}
+          >
+            <h1 className="font-semibold text-emerald-400 ">
+              General Manager Details
+            </h1>
+            <FormInput name="fullName" label="Name"></FormInput>
+            <FormInput name="email" label="Email"></FormInput>
+            <FormInput name="password" label="Password"></FormInput>
+          </BaseForm>
         </TabsContent>
         <TabsContent value="branch">
-          <Card className="border-none shadow-none">
-            <CardHeader>
-              <CardTitle>Password</CardTitle>
-              <CardDescription>
-                Change your password here. After saving, you&apos;ll be logged
-                out.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-6">
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-current">Current password</Label>
-                <Input id="tabs-demo-current" type="password" />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-new">New password</Label>
-                <Input id="tabs-demo-new" type="password" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Save password</Button>
-            </CardFooter>
-          </Card>
+          <BaseForm
+            onSubmit={onSubmit}
+            defaultValues={{
+              fullName: "",
+              email: "",
+              password: "",
+              Branch: "",
+            }}
+          >
+            <h1 className="font-semibold text-emerald-400 ">Branch Details</h1>
+            <FormInput name="Branch" label="Branch Name"></FormInput>
+            <h1 className="font-semibold text-emerald-400 ">User Details</h1>
+            <FormInput name="fullName" label="Name"></FormInput>
+            <FormInput name="email" label="Email"></FormInput>
+            <FormInput name="password" label="Password"></FormInput>
+          </BaseForm>
         </TabsContent>
       </Tabs>
     </div>
