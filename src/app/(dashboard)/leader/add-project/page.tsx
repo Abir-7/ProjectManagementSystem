@@ -26,7 +26,7 @@
 //       {" "}
 //       {/* Full screen height */}
 //       <div className=" shadow ">
-//         <h1 className="text-center text-2xl font-bold text-emerald-400 mb-2">
+//         <h1 className="text-center text-2xl font-bold text-gray-900 mb-2">
 //           Add New Project
 //         </h1>
 //       </div>

@@ -27,9 +27,7 @@ const Page: React.FC = () => {
             onSubmit={onSubmit}
             defaultValues={{ fullName: "", email: "", password: "" }}
           >
-            <h1 className="font-semibold text-emerald-400 ">
-              Co-Leader Details
-            </h1>
+            <h1 className="font-semibold text-gray-900 ">Co-Leader Details</h1>
             <FormInput name="fullName" label="Name"></FormInput>
             <FormInput name="email" label="Email"></FormInput>
             <FormInput name="password" label="Password"></FormInput>
@@ -40,7 +38,7 @@ const Page: React.FC = () => {
             onSubmit={onSubmit}
             defaultValues={{ fullName: "", email: "", password: "" }}
           >
-            <h1 className="font-semibold text-emerald-400 ">Leader Details</h1>
+            <h1 className="font-semibold text-gray-900 ">Leader Details</h1>
             <FormInput name="fullName" label="Name"></FormInput>
             <FormInput name="email" label="Email"></FormInput>
             <FormInput name="password" label="Password"></FormInput>
@@ -51,9 +49,7 @@ const Page: React.FC = () => {
             onSubmit={onSubmit}
             defaultValues={{ fullName: "", email: "", password: "" }}
           >
-            <h1 className="font-semibold text-emerald-400 ">
-              Supervisor Details
-            </h1>
+            <h1 className="font-semibold text-gray-900 ">Supervisor Details</h1>
             <FormInput name="fullName" label="Name"></FormInput>
             <FormInput name="email" label="Email"></FormInput>
             <FormInput name="password" label="Password"></FormInput>
@@ -64,7 +60,7 @@ const Page: React.FC = () => {
             onSubmit={onSubmit}
             defaultValues={{ fullName: "", email: "", password: "" }}
           >
-            <h1 className="font-semibold text-emerald-400 ">
+            <h1 className="font-semibold text-gray-900 ">
               General Manager Details
             </h1>
             <FormInput name="fullName" label="Name"></FormInput>
@@ -82,9 +78,9 @@ const Page: React.FC = () => {
               Branch: "",
             }}
           >
-            <h1 className="font-semibold text-emerald-400 ">Branch Details</h1>
+            <h1 className="font-semibold text-gray-900 ">Branch Details</h1>
             <FormInput name="Branch" label="Branch Name"></FormInput>
-            <h1 className="font-semibold text-emerald-400 ">User Details</h1>
+            <h1 className="font-semibold text-gray-900 ">User Details</h1>
             <FormInput name="fullName" label="Name"></FormInput>
             <FormInput name="email" label="Email"></FormInput>
             <FormInput name="password" label="Password"></FormInput>

@@ -9,8 +9,8 @@ const layout = ({ children }: { children: ReactNode }) => {
 
       <main className="w-full">
         {/* Top bar */}
-        <div className="p-2 bg-emerald-400 flex justify-between">
-          <SidebarTrigger className="text-white hover:text-emerald-400" />
+        <div className="p-2 bg-gray-900 flex justify-between">
+          <SidebarTrigger className="text-white hover:text-gray-900" />
           <div className="flex justify-center items-center gap-2">
             <p className="text-white font-semibold">Hello, Abir</p>
             <div className="w-10 h-10 bg-white rounded-full"></div>

@@ -73,7 +73,7 @@ const FormArrayInput: React.FC<PhasesInputProps> = ({
       ))}
       <button
         type="button"
-        className="  shadow shadow-emerald-400 bg-gray-100 px-2 py-0.5 rounded-sm hover:bg-gray-200"
+        className="  shadow  bg-gray-100 px-2 py-0.5 rounded-sm hover:bg-gray-200"
         onClick={() =>
           append({ name: "", budget: 0, startTime: "", endTime: "" })
         }
