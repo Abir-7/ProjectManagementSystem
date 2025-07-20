@@ -22,7 +22,7 @@ const Login = () => {
     try {
       const res = await login({ email, password }).unwrap();
       // Assuming your backend returns { user, userProfile }
-
+      console.log(res);
       if (res.success) {
         if (allowedRoles.includes(res.data.userData.role)) {
           await saveAuthDataToCookie(

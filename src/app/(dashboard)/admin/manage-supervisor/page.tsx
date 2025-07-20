@@ -3,14 +3,11 @@
 import React from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BaseForm } from "@/components/ShadCN_Form/BaseForm";
-import { FormInput } from "@/components/ShadCN_Form/FormInput";
+
+import AddSupervisor from "./_adminComponent/AddSupervisor";
+import ManageSupervisor from "./_adminComponent/ManageSupervisor";
 
 const Page: React.FC = () => {
-  const onSubmit = async (data: any) => {
-    console.log(data);
-  };
-
   return (
     <div className="flex w-full  flex-col gap-6 ">
       <Tabs defaultValue="branch">
@@ -20,21 +17,11 @@ const Page: React.FC = () => {
         </TabsList>
 
         <TabsContent value="add-supervisor">
-          <BaseForm
-            isLoading={false}
-            btnText="Add"
-            onSubmit={onSubmit}
-            defaultValues={{ fullName: "", email: "", password: "" }}
-          >
-            <h1 className="font-semibold text-gray-900 ">Supervisor Details</h1>
-            <FormInput name="fullName" label="Name"></FormInput>
-            <FormInput name="email" label="Email"></FormInput>
-            <FormInput name="password" label="Password"></FormInput>
-          </BaseForm>
+          <AddSupervisor></AddSupervisor>
         </TabsContent>
 
         <TabsContent value="manage-supervisor">
-          <div>Manage Supervisor</div>
+          <ManageSupervisor></ManageSupervisor>
         </TabsContent>
       </Tabs>
     </div>
