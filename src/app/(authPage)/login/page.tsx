@@ -50,7 +50,7 @@ const Login = () => {
       }
     } catch (err: any) {
       console.log(err, "fffff");
-      toast.error(err.data.message);
+      toast.error(err?.data?.message || "Something went wrong!");
     }
   };
 
