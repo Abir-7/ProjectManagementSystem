@@ -13,6 +13,8 @@ type BaseFormProps<T extends FieldValues> = {
   onSubmit: (data: T) => void;
   children: React.ReactNode;
   className?: string;
+  isLoading: boolean;
+  btnText: string;
 };
 
 export function BaseForm<T extends FieldValues>({
@@ -20,6 +22,8 @@ export function BaseForm<T extends FieldValues>({
   onSubmit,
   children,
   className = "",
+  isLoading,
+  btnText,
 }: BaseFormProps<T>) {
   const methods = useForm<T>({ defaultValues });
 
@@ -34,7 +38,7 @@ export function BaseForm<T extends FieldValues>({
           type="submit"
           className="w-full bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800"
         >
-          Submit
+          {isLoading ? "Processing..." : btnText}
         </button>
       </form>
     </FormProvider>

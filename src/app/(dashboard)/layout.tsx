@@ -18,7 +18,7 @@ const layout = ({ children }: { children: ReactNode }) => {
         </div>
 
         {/* Scrollable content */}
-        <div className=" ">{children}</div>
+        <div className="">{children}</div>
       </main>
     </SidebarProvider>
   );

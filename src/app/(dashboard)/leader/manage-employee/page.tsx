@@ -24,6 +24,8 @@ const Page: React.FC = () => {
 
         <TabsContent value="co-leader">
           <BaseForm
+            isLoading={false}
+            btnText="Add"
             onSubmit={onSubmit}
             defaultValues={{ fullName: "", email: "", password: "" }}
           >
@@ -35,6 +37,8 @@ const Page: React.FC = () => {
         </TabsContent>
         <TabsContent value="leader">
           <BaseForm
+            isLoading={false}
+            btnText="Add"
             onSubmit={onSubmit}
             defaultValues={{ fullName: "", email: "", password: "" }}
           >
@@ -46,6 +50,8 @@ const Page: React.FC = () => {
         </TabsContent>
         <TabsContent value="supervisor">
           <BaseForm
+            isLoading={false}
+            btnText="Add"
             onSubmit={onSubmit}
             defaultValues={{ fullName: "", email: "", password: "" }}
           >
@@ -57,6 +63,8 @@ const Page: React.FC = () => {
         </TabsContent>
         <TabsContent value="manager">
           <BaseForm
+            isLoading={false}
+            btnText="Add"
             onSubmit={onSubmit}
             defaultValues={{ fullName: "", email: "", password: "" }}
           >
@@ -70,6 +78,8 @@ const Page: React.FC = () => {
         </TabsContent>
         <TabsContent value="branch">
           <BaseForm
+            isLoading={false}
+            btnText="Add"
             onSubmit={onSubmit}
             defaultValues={{
               fullName: "",

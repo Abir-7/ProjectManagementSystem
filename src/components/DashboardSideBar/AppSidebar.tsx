@@ -16,57 +16,32 @@ import { usePathname } from "next/navigation";
 
 // Menu items.
 const items = [
+  // all
   {
-    title: "Home",
+    title: "Dashboard",
     url: "/",
     icon: Home,
-    roles: ["admin", "supervisor", "leader", "employee"],
+    roles: ["ADMIN", "supervisor", "leader", "employee"],
   },
-  {
-    title: "Admin Dashboard",
-    url: "/admin",
-    icon: Inbox,
-    roles: ["admin"],
-  },
-  {
-    title: "Add Supervisor",
-    url: "/admin/add-supervisor",
-    icon: Inbox,
-    roles: ["admin"],
-  },
+  // admin
   {
     title: "Manage Supervisor",
     url: "/admin/manage-supervisor",
     icon: Inbox,
-    roles: ["admin"],
+    roles: ["ADMIN"],
   },
-  {
-    title: "Supervisor Dashboard",
-    url: "/supervisor",
-    icon: Calendar,
-    roles: ["supervisor"],
-  },
+  // supervisor
   {
     title: "Manage Team",
     url: "/supervisor/manage-team",
     icon: Calendar,
     roles: ["supervisor"],
   },
+
+  // leader
   {
-    title: "Leader Dashboard",
-    url: "/leader",
-    icon: Calendar,
-    roles: ["leader"],
-  },
-  {
-    title: "Add Employee",
-    url: "/leader/add-employee",
-    icon: Calendar,
-    roles: ["leader"],
-  },
-  {
-    title: "Add Project",
-    url: "/leader/add-project",
+    title: "Manage Employee",
+    url: "/leader/mamage-employee",
     icon: Calendar,
     roles: ["leader"],
   },
@@ -76,24 +51,12 @@ const items = [
     icon: Calendar,
     roles: ["leader"],
   },
-  {
-    title: "Remove Employee",
-    url: "/leader/remove-employee",
-    icon: Calendar,
-    roles: ["leader"],
-  },
-  {
-    title: "Add Admins & Leads",
-    url: "/admins&leads",
-    icon: Calendar,
-    roles: ["admin", "leader"],
-  },
 ];
 
 export function AppSidebar() {
-  const role = "admin";
+  const role = "ADMIN";
   const pathname = usePathname();
-  console.log(pathname);
+
   const [selectedPath, setSelectedPath] = useState(pathname);
   return (
     <div className="relative ">

@@ -1,25 +1,39 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { getTokenFromCookie } from "./serverAction/auth.server";
+import { getAuthDataFromCookie } from "./serverAction/auth.server";
+
+// Publicly accessible paths (no auth or role check)
+const publicPaths = ["/login", "/signup", "/verify"];
+
+// Valid roles in the system
+export const allowedRoles = ["ADMIN", "EMPLOYEE", "LEADER", "SUPERVISOR"];
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const token = await getTokenFromCookie();
 
-  const publicPaths = ["/login", "/signup", "/verify"];
+  // Allow public paths through without auth check
+  if (publicPaths.includes(pathname)) {
+    return NextResponse.next();
+  }
 
-  if (!publicPaths.includes(pathname) && !token) {
+  const auth = await getAuthDataFromCookie();
+  const token = auth?.token;
+  const role = auth?.role;
+
+  if (!token || !allowedRoles.includes(role)) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  //need to redirect role based dashboard page
   if (pathname === "/") {
-    return NextResponse.redirect(new URL("/login", request.url));
+    return NextResponse.redirect(
+      new URL(`/${role.toLowerCase()}`, request.url)
+    );
   }
 
   return NextResponse.next();
 }
 
+// Apply middleware to all routes except next/static/api assets
 export const config = {
   matcher: ["/((?!_next|api|static|favicon.ico).*)"],
 };

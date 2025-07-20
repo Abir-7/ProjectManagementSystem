@@ -2,29 +2,39 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { getAuthDataFromCookie } from "@/serverAction/auth.server";
 
 const DashboardRedirect = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const role = localStorage.getItem("role") || "admin"; // or Redux/cookies
+    const redirectUser = async () => {
+      try {
+        const { role } = await getAuthDataFromCookie();
 
-    switch (role) {
-      case "admin":
-        router.replace("/admin");
-        break;
-      case "employee":
-        router.replace("/employee");
-        break;
-      case "leader":
-        router.replace("/leader");
-        break;
-      case "supervisor":
-        router.replace("/supervisor");
-        break;
-      default:
+        switch (role) {
+          case "ADMIN":
+            router.replace("/admin");
+            break;
+          case "EMPLOYEE":
+            router.replace("/employee");
+            break;
+          case "LEADER":
+            router.replace("/leader");
+            break;
+          case "SUPERVISOR":
+            router.replace("/supervisor");
+            break;
+          default:
+            router.replace("/unauthorized");
+        }
+      } catch (error) {
+        console.error("Failed to get auth data:", error);
         router.replace("/unauthorized");
-    }
+      }
+    };
+
+    redirectUser();
   }, [router]);
 
   return (
