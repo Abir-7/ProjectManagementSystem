@@ -47,7 +47,11 @@ const Login = () => {
       }
     } catch (err: any) {
       console.log(err, "fffff");
+<<<<<<< HEAD
       toast.error(err?.data?.message || "Something went w");
+=======
+      toast.error(err?.data?.message || "Something went wrong!");
+>>>>>>> 88d6257fc87b3864dd048c97b9deaee796b7ceae
     }
   };
 
