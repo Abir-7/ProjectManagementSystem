@@ -1,11 +1,10 @@
+import { UserRole } from "@/interface/authinterface";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export type AuthRole = "ADMIN" | "EMPLOYEE" | "LEADER" | "SUPERVISOR";
 
 interface AuthState {
   user: {
     token: string;
-    role: AuthRole;
+    role: UserRole;
     email: string;
     id: string;
   } | null;

@@ -1,4 +1,4 @@
-import { AuthRole } from "@/redux/features/auth/auth";
+import { UserRole } from "@/interface/authinterface";
 import { baseApi } from "../baseApi";
 
 export const authApi = baseApi.injectEndpoints({
@@ -8,7 +8,7 @@ export const authApi = baseApi.injectEndpoints({
         email: string;
         fullName: string;
         password: string;
-        role: AuthRole;
+        role: UserRole;
       }) => ({
         url: "/auth/create-user",
         method: "POST",

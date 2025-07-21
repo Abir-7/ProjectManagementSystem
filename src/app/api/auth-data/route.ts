@@ -1,11 +1,11 @@
-import { AuthRole } from "@/redux/features/auth/auth";
+import { UserRole } from "@/interface/authinterface";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 type AuthCookie = {
   token: string;
   email: string;
-  role: AuthRole;
+  role: UserRole;
   id: string;
 };
 
