@@ -45,9 +45,9 @@ const items = [
   // leader
   {
     title: "Manage Employee",
-    url: "/leader/mamage-employee",
+    url: "/supervisor/manage-employee",
     icon: Calendar,
-    roles: userRoles.LEADER,
+    roles: userRoles.SUPERVISOR,
   },
   {
     title: "Manage Project",
