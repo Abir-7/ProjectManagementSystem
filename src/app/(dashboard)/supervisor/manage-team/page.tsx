@@ -33,6 +33,45 @@ const Page: React.FC = () => {
             <FormInput name="email" label="Email"></FormInput>
             <FormInput name="password" label="Password"></FormInput>
           </BaseForm>
+          <BaseForm
+            isLoading={false}
+            btnText="Add"
+            onSubmit={onSubmit}
+            defaultValues={{ fullName: "", email: "", password: "" }}
+          >
+            <h1 className="font-semibold text-gray-900 ">
+              General Manager Details
+            </h1>
+            <FormInput name="fullName" label="Name"></FormInput>
+            <FormInput name="email" label="Email"></FormInput>
+            <FormInput name="password" label="Password"></FormInput>
+          </BaseForm>
+          <BaseForm
+            isLoading={false}
+            btnText="Add"
+            onSubmit={onSubmit}
+            defaultValues={{ fullName: "", email: "", password: "" }}
+          >
+            <h1 className="font-semibold text-gray-900 ">
+              General Manager Details
+            </h1>
+            <FormInput name="fullName" label="Name"></FormInput>
+            <FormInput name="email" label="Email"></FormInput>
+            <FormInput name="password" label="Password"></FormInput>
+          </BaseForm>
+          <BaseForm
+            isLoading={false}
+            btnText="Add"
+            onSubmit={onSubmit}
+            defaultValues={{ fullName: "", email: "", password: "" }}
+          >
+            <h1 className="font-semibold text-gray-900 ">
+              General Manager Details
+            </h1>
+            <FormInput name="fullName" label="Name"></FormInput>
+            <FormInput name="email" label="Email"></FormInput>
+            <FormInput name="password" label="Password"></FormInput>
+          </BaseForm>
         </TabsContent>
         <TabsContent value="add-team">
           <BaseForm
