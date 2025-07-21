@@ -5,9 +5,6 @@ import { getAuthDataFromCookie } from "./serverAction/auth.server";
 // Publicly accessible paths (no auth or role check)
 const publicPaths = ["/login", "/signup", "/verify"];
 
-// Valid roles in the system
-const allowedRoles = ["ADMIN", "EMPLOYEE", "LEADER", "SUPERVISOR"];
-
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -20,7 +17,7 @@ export async function middleware(request: NextRequest) {
   const token = auth?.token;
   const role = auth?.role;
 
-  if (!token || !allowedRoles.includes(role)) {
+  if (!token) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 

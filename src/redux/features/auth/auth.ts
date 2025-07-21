@@ -7,7 +7,7 @@ interface AuthState {
     token: string;
     role: AuthRole;
     email: string;
-    _id: string;
+    id: string;
   } | null;
   userProfile: {
     fullName: string;

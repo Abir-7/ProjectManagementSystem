@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { getAuthDataFromCookie } from "@/serverAction/auth.server";
 
 const DashboardRedirect = () => {
   const router = useRouter();
@@ -10,9 +9,17 @@ const DashboardRedirect = () => {
   useEffect(() => {
     const redirectUser = async () => {
       try {
-        const { role } = await getAuthDataFromCookie();
+        const res = await fetch("/api/auth-data", {
+          credentials: "include", // <== THIS IS KEY
+        });
+        const data = await res.json();
 
-        switch (role) {
+        if (!data?.role) {
+          router.replace("/unauthorized");
+          return;
+        }
+
+        switch (data.role) {
           case "ADMIN":
             router.replace("/admin");
             break;
@@ -29,7 +36,7 @@ const DashboardRedirect = () => {
             router.replace("/unauthorized");
         }
       } catch (error) {
-        console.error("Failed to get auth data:", error);
+        console.error("Redirect error:", error);
         router.replace("/unauthorized");
       }
     };

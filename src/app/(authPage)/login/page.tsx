@@ -6,12 +6,10 @@ import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/redux/hooks";
 import { useLoginMutation } from "@/redux/api/authApi/authApi";
 import { addAuthData } from "@/redux/features/auth/auth";
-import { saveAuthDataToCookie } from "@/serverAction/auth.server";
 
 import { toast } from "sonner";
 import { BaseForm } from "@/components/ShadCN_Form/BaseForm";
 import { FormInput } from "@/components/ShadCN_Form/FormInput";
-export const allowedRoles = ["ADMIN", "EMPLOYEE", "LEADER", "SUPERVISOR"];
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -25,11 +23,18 @@ const Login = () => {
       // Assuming your backend returns { user, userProfile }
       console.log(res);
       if (res.success) {
-        await saveAuthDataToCookie(
-          res.data.accessToken,
-          res.data.userData.email,
-          res.data.userData.role
-        );
+        await fetch("/api/auth-data", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            token: res.data.accessToken,
+            email: res.data.userData.email,
+            role: res.data.userData.role,
+            id: res.data.userData._id,
+          }),
+        });
         dispatch(
           addAuthData({
             isLoading: false,
@@ -38,20 +43,16 @@ const Login = () => {
               email: res.data.userData.email,
               role: res.data.userData.role,
               token: res.data.accessToken,
-              _id: res.data.userData._id,
+              id: res.data.userData._id,
             },
           })
         );
 
-        router.push(`/${res.data.userData.role.toLowerCase()}`); // redirect after login
+        router.push(`/`); // redirect after login
       }
     } catch (err: any) {
       console.log(err, "fffff");
-<<<<<<< HEAD
-      toast.error(err?.data?.message || "Something went w");
-=======
       toast.error(err?.data?.message || "Something went wrong!");
->>>>>>> 88d6257fc87b3864dd048c97b9deaee796b7ceae
     }
   };
 

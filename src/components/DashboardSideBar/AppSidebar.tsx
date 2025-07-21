@@ -1,5 +1,4 @@
 "use client";
-import { Calendar, Home, Inbox } from "lucide-react";
 
 import {
   Sidebar,
@@ -15,13 +14,17 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 
 // Menu items.
+import { Home, Inbox, Calendar } from "lucide-react";
+import { useAppSelector } from "@/redux/hooks";
+import LogoutButton from "../LogoutComponent/LogoutButton";
+
 const items = [
   // all
   {
     title: "Dashboard",
     url: "/",
     icon: Home,
-    roles: ["ADMIN", "supervisor", "leader", "employee"],
+    roles: ["ADMIN", "SUPERVISOR", "LEADER", "EMPLOYEE"],
   },
   // admin
   {
@@ -35,7 +38,7 @@ const items = [
     title: "Manage Team",
     url: "/supervisor/manage-team",
     icon: Calendar,
-    roles: ["supervisor"],
+    roles: ["SUPERVISOR"],
   },
 
   // leader
@@ -43,18 +46,20 @@ const items = [
     title: "Manage Employee",
     url: "/leader/mamage-employee",
     icon: Calendar,
-    roles: ["leader"],
+    roles: ["LEADER"],
   },
   {
     title: "Manage Project",
     url: "/leader/manage-projects",
     icon: Calendar,
-    roles: ["leader"],
+    roles: ["LEADER"],
   },
 ];
 
 export function AppSidebar() {
-  const role = "ADMIN";
+  const { user } = useAppSelector((state) => state.auth);
+
+  const role = user?.role as string;
   const pathname = usePathname();
 
   const [selectedPath, setSelectedPath] = useState(pathname);
@@ -97,6 +102,9 @@ export function AppSidebar() {
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
+        <div className="mt-auto p-2 bg-gray-900 ">
+          <LogoutButton></LogoutButton>
+        </div>
       </Sidebar>
     </div>
   );

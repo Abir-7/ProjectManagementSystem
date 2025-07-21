@@ -10,10 +10,10 @@ import ManageSupervisor from "./_adminComponent/ManageSupervisor";
 const Page: React.FC = () => {
   return (
     <div className="flex w-full  flex-col gap-6 ">
-      <Tabs defaultValue="branch">
+      <Tabs defaultValue="manage-supervisor">
         <TabsList className="mx-auto mt-2">
-          <TabsTrigger value="add-supervisor">Add Supervisor</TabsTrigger>
           <TabsTrigger value="manage-supervisor">Manage Supervisor</TabsTrigger>
+          <TabsTrigger value="add-supervisor">Add Supervisor</TabsTrigger>
         </TabsList>
 
         <TabsContent value="add-supervisor">
