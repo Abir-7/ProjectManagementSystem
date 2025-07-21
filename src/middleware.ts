@@ -6,7 +6,7 @@ import { getAuthDataFromCookie } from "./serverAction/auth.server";
 const publicPaths = ["/login", "/signup", "/verify"];
 
 // Valid roles in the system
-export const allowedRoles = ["ADMIN", "EMPLOYEE", "LEADER", "SUPERVISOR"];
+const allowedRoles = ["ADMIN", "EMPLOYEE", "LEADER", "SUPERVISOR"];
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -35,5 +35,12 @@ export async function middleware(request: NextRequest) {
 
 // Apply middleware to all routes except next/static/api assets
 export const config = {
-  matcher: ["/((?!_next|api|static|favicon.ico).*)"],
+  matcher: [
+    // Match all paths except:
+    // - API routes
+    // - Static files
+    // - Next.js internals
+    // - Favicon
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+  ],
 };
