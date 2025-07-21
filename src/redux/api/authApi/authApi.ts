@@ -1,4 +1,4 @@
-import { UserRole } from "@/interface/authinterface";
+import { TUserRoles } from "@/interface/authinterface";
 import { baseApi } from "../baseApi";
 
 export const authApi = baseApi.injectEndpoints({
@@ -8,7 +8,7 @@ export const authApi = baseApi.injectEndpoints({
         email: string;
         fullName: string;
         password: string;
-        role: UserRole;
+        role: TUserRoles;
       }) => ({
         url: "/auth/create-user",
         method: "POST",

@@ -1,10 +1,10 @@
-import { UserRole } from "@/interface/authinterface";
+import { TUserRoles } from "@/interface/authinterface";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface AuthState {
   user: {
     token: string;
-    role: UserRole;
+    role: TUserRoles;
     email: string;
     id: string;
   } | null;

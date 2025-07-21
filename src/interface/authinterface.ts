@@ -1,6 +1,7 @@
-export type UserRole = "ADMIN" | "EMPLOYEE" | "LEADER" | "SUPERVISOR";
+"use client";
+export type TUserRoles = "ADMIN" | "EMPLOYEE" | "LEADER" | "SUPERVISOR";
 
-export const userRole = {
+export const userRoles = {
   ADMIN: "ADMIN",
   EMPLOYEE: "EMPLOYEE",
   LEADER: "LEADER",

@@ -17,6 +17,7 @@ import { usePathname } from "next/navigation";
 import { Home, Inbox, Calendar } from "lucide-react";
 import { useAppSelector } from "@/redux/hooks";
 import LogoutButton from "../LogoutComponent/LogoutButton";
+import { TUserRoles, userRoles } from "@/interface/authinterface";
 
 const items = [
   // all
@@ -24,21 +25,21 @@ const items = [
     title: "Dashboard",
     url: "/",
     icon: Home,
-    roles: ["ADMIN", "SUPERVISOR", "LEADER", "EMPLOYEE"],
+    roles: [...Object.values(userRoles)],
   },
   // admin
   {
     title: "Manage Supervisor",
     url: "/admin/manage-supervisor",
     icon: Inbox,
-    roles: ["ADMIN"],
+    roles: userRoles.ADMIN,
   },
   // supervisor
   {
     title: "Manage Team",
     url: "/supervisor/manage-team",
     icon: Calendar,
-    roles: ["SUPERVISOR"],
+    roles: userRoles.SUPERVISOR,
   },
 
   // leader
@@ -46,20 +47,20 @@ const items = [
     title: "Manage Employee",
     url: "/leader/mamage-employee",
     icon: Calendar,
-    roles: ["LEADER"],
+    roles: userRoles.LEADER,
   },
   {
     title: "Manage Project",
     url: "/leader/manage-projects",
     icon: Calendar,
-    roles: ["LEADER"],
+    roles: userRoles.LEADER,
   },
 ];
 
 export function AppSidebar() {
   const { user } = useAppSelector((state) => state.auth);
 
-  const role = user?.role as string;
+  const role = user?.role as TUserRoles;
   const pathname = usePathname();
 
   const [selectedPath, setSelectedPath] = useState(pathname);

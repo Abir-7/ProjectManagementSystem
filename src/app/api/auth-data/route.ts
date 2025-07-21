@@ -1,11 +1,11 @@
-import { UserRole } from "@/interface/authinterface";
+import { TUserRoles } from "@/interface/authinterface";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 type AuthCookie = {
   token: string;
   email: string;
-  role: UserRole;
+  role: TUserRoles;
   id: string;
 };
 
