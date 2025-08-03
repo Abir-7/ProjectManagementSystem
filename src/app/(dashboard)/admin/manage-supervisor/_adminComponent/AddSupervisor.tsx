@@ -2,6 +2,7 @@
 
 import { BaseForm } from "@/components/ShadCN_Form/BaseForm";
 import { FormInput } from "@/components/ShadCN_Form/FormInput";
+import { userRoles } from "@/interface/authinterface";
 import { ApiResponse } from "@/redux/api/api.interface";
 import { useCreateUserMutation } from "@/redux/api/authApi/authApi";
 import React from "react";
@@ -15,7 +16,7 @@ const AddSupervisor = () => {
 
     const res = (await createUser({
       ...data,
-      role: "SUPERVISOR",
+      role: userRoles.SUPERVISOR,
     })) as unknown as ApiResponse<any>;
 
     if (res.data?.success) {
