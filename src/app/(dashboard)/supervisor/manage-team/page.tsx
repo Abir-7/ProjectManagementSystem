@@ -3,14 +3,10 @@
 import React from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BaseForm } from "@/components/ShadCN_Form/BaseForm";
-import { FormInput } from "@/components/ShadCN_Form/FormInput";
+import AddTeam from "./_components/AddTeam";
+import ManageTeam from "./_components/ManageTeam";
 
 const Page: React.FC = () => {
-  const onSubmit = async (data: any) => {
-    console.log(data);
-  };
-
   return (
     <div className="flex w-full  flex-col gap-6 ">
       <Tabs defaultValue="manage-team">
@@ -19,26 +15,11 @@ const Page: React.FC = () => {
           <TabsTrigger value="add-team">Add Team</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="manage-team">Manage Team</TabsContent>
+        <TabsContent value="manage-team">
+          <ManageTeam></ManageTeam>
+        </TabsContent>
         <TabsContent value="add-team">
-          <BaseForm
-            isLoading={false}
-            btnText="Add"
-            onSubmit={onSubmit}
-            defaultValues={{
-              fullName: "",
-              email: "",
-              password: "",
-              Branch: "",
-            }}
-          >
-            <h1 className="font-semibold text-gray-900 ">Branch Details</h1>
-            <FormInput name="Branch" label="Branch Name"></FormInput>
-            <h1 className="font-semibold text-gray-900 ">User Details</h1>
-            <FormInput name="fullName" label="Name"></FormInput>
-            <FormInput name="email" label="Email"></FormInput>
-            <FormInput name="password" label="Password"></FormInput>
-          </BaseForm>
+          <AddTeam></AddTeam>
         </TabsContent>
       </Tabs>
     </div>

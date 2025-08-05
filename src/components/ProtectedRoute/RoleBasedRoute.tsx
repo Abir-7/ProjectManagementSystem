@@ -14,14 +14,14 @@ const RoleBasedRoute = ({ children, roles }: RoleBasedRouteProps) => {
   // Redirect or null if not authorized
   if (!user || !roles.includes(user.role)) {
     return (
-      <div className="flex items-center justify-center min-h-screen text-red-500">
+      <div className="flex items-center justify-center min-h-screen  text-red-500">
         Unauthorized access
       </div>
     );
     // OR: router.replace("/unauthorized"); return null;
   }
 
-  return <>{children}</>;
+  return <div className="h-full">{children}</div>;
 };
 
 export default RoleBasedRoute;

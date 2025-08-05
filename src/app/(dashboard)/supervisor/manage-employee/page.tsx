@@ -9,6 +9,7 @@ import { userRoles } from "@/interface/authinterface";
 import { useCreateUserMutation } from "@/redux/api/authApi/authApi";
 import { toast } from "sonner";
 import { ApiResponse } from "@/redux/api/api.interface";
+import ManageEmployee from "./_components/ManageEmployee";
 
 const Page: React.FC = () => {
   const [createUser, { isLoading }] = useCreateUserMutation();
@@ -30,13 +31,15 @@ const Page: React.FC = () => {
     }
   };
   return (
-    <div className="flex w-full  flex-col gap-6 ">
+    <div className="flex w-full h-[calc(100vh-56px)]  flex-col gap-6 ">
       <Tabs defaultValue="manage-employee">
         <TabsList className="mx-auto mt-2">
           <TabsTrigger value="manage-employee">Manage Employee</TabsTrigger>
           <TabsTrigger value="add-employee">Add Employee</TabsTrigger>
         </TabsList>
-        <TabsContent value="manage-employee">Manage Employee</TabsContent>
+        <TabsContent value="manage-employee" className="">
+          <ManageEmployee></ManageEmployee>
+        </TabsContent>
         <TabsContent value="add-employee">
           <BaseForm
             isLoading={isLoading}

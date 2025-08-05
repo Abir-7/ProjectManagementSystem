@@ -33,7 +33,7 @@ export const FormSelect: React.FC<FormSelectProps> = ({
           <FormLabel>{label}</FormLabel>
           <FormControl>
             <select {...field} className="w-full p-2 border rounded-md">
-              <option value="" disabled>
+              <option value="" selected disabled>
                 Select {label.toLowerCase()}
               </option>
               {options.map((opt) => (
