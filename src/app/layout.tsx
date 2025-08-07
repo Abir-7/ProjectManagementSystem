@@ -26,9 +26,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased  md:container h-screen mx-auto overflow-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased    h-screen mx-auto`}
       >
-        <Providers>{children}</Providers>
+        <div className="z-10 overflow-hidden container mx-auto">
+          <Providers>{children}</Providers>
+        </div>
       </body>
     </html>
   );

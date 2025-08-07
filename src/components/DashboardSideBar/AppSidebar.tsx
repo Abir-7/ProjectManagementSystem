@@ -66,8 +66,8 @@ export function AppSidebar() {
   const [selectedPath, setSelectedPath] = useState(pathname);
   return (
     <div className="relative ">
-      <Sidebar className="absolute ">
-        <SidebarContent className="bg-gray-900">
+      <Sidebar className="absolute -z-20 ">
+        <SidebarContent className="bg-gray-900 ">
           <SidebarGroup className="text-white">
             {/* <SidebarGroupLabel className="text-white text-lg">
               Application

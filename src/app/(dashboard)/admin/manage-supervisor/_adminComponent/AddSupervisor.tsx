@@ -38,6 +38,7 @@ const AddSupervisor = () => {
       <h1 className="font-semibold text-gray-900 ">Supervisor Details</h1>
       <FormInput name="fullName" label="Name"></FormInput>
       <FormInput name="email" label="Email"></FormInput>
+      <FormInput name="phone" label="Mobile"></FormInput>
       <FormInput name="password" label="Password"></FormInput>
     </BaseForm>
   );

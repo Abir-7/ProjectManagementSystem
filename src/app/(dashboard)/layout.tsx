@@ -20,7 +20,7 @@ const layout = ({ children }: { children: ReactNode }) => {
               </div>
             </div>
 
-            <div className="h-[calc(100vh-56px)] overflow-y-auto pb-1 ">
+            <div className="h-[calc(100vh-56px)] overflow-y-auto pb-1  ">
               {children}
             </div>
           </main>
