@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { getAuthDataFromCookie } from "./serverAction/auth.server";
+import { getAuthDataFromCookie } from "./auth/auth.server";
 
 // Publicly accessible paths (no auth or role check)
 const publicPaths = ["/login", "/signup", "/verify"];

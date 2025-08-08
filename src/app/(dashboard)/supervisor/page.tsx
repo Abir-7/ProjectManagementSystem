@@ -1,7 +1,7 @@
 import React from "react";
 
-const SupervisorDashboard = () => {
-  return <div>supervisor dashboard</div>;
+const page = () => {
+  return <div>super</div>;
 };
 
-export default SupervisorDashboard;
+export default page;

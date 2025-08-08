@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import React from "react";
 import {
   useForm,
@@ -34,12 +35,9 @@ export function BaseForm<T extends FieldValues>({
         className={`space-y-6 mx-2 md:mx-4 lg:mx-6  mt-8 ${className}`}
       >
         {children}
-        <button
-          type="submit"
-          className="w-full bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800"
-        >
+        <Button type="submit" className="w-full">
           {isLoading ? "Processing..." : btnText}
-        </button>
+        </Button>
       </form>
     </FormProvider>
   );

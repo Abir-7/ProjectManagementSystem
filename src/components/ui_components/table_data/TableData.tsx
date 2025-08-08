@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import {
@@ -13,6 +13,21 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 
 type Column<T> = {
   header: string;
@@ -83,52 +98,34 @@ export default function TableData<T>({
     setModalOpen(false);
   };
 
-  // Close modal on ESC key
-  useEffect(() => {
-    function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape" && modalOpen) {
-        closeModal();
-      }
-    }
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [modalOpen]);
-
   return (
-    <div className="rounded-md border p-4">
+    <div className="rounded-md border border-border p-4 bg-background text-foreground">
       {/* Controls */}
-      <div className="flex justify-between gap-4">
-        {/* Column Toggle */}
-        <div className="relative w-fit inline-block mb-4">
-          <details className="dropdown w-28">
-            <summary className="cursor-pointer border px-3 py-[5px] rounded">
-              Columns
-            </summary>
-            <div className="absolute z-10 mt-1 bg-white border shadow rounded p-2 w-48">
-              {columns.map((col) => (
-                <label
-                  key={String(col.accessor)}
-                  className="flex items-center space-x-2 py-1"
-                >
-                  <input
-                    className="accent-blue-950"
-                    type="checkbox"
-                    checked={visibleColumns.includes(col.accessor)}
-                    onChange={() => toggleColumn(col.accessor)}
-                  />
-                  <span>{col.header}</span>
-                </label>
-              ))}
-            </div>
-          </details>
-        </div>
+      <div className="flex justify-between gap-4 mb-4">
+        {/* ShadCN DropdownMenu for Columns */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline">Columns</Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-48">
+            {columns.map((col) => (
+              <DropdownMenuCheckboxItem
+                key={String(col.accessor)}
+                checked={visibleColumns.includes(col.accessor)}
+                onCheckedChange={() => toggleColumn(col.accessor)}
+              >
+                {col.header}
+              </DropdownMenuCheckboxItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
 
         {/* Search Input */}
         <Input
           value={searchTerm}
           onChange={handleSearchChange}
           placeholder="Search"
-          className="focus-visible:border-gray-300 focus-visible:ring-0 w-full max-w-96"
+          className="focus-visible:ring-1 focus-visible:ring-ring w-full max-w-96"
         />
       </div>
 
@@ -165,7 +162,7 @@ export default function TableData<T>({
                         className={col.alignRight ? "text-right" : ""}
                       >
                         <button
-                          className="bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700 transition"
+                          className="bg-primary text-primary-foreground px-2 py-1 rounded hover:bg-primary/90 transition"
                           onClick={() => openModal(userId)}
                         >
                           View
@@ -217,57 +214,18 @@ export default function TableData<T>({
         )}
       </Table>
 
-      {/* Custom shadcn-like modal */}
-      {modalOpen && (
-        <>
-          {/* Overlay */}
-          <div
-            onClick={closeModal}
-            className="fixed inset-0 bg-black/50 transition-opacity"
-          ></div>
-
-          {/* Modal box */}
-          <div
-            role="dialog"
-            aria-modal="true"
-            className="fixed inset-0 flex items-center justify-center p-4"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="bg-white rounded-lg shadow-lg max-w-md w-full max-h-[90vh] overflow-auto p-6 animate-fadeIn">
-              <header className="mb-4">
-                <h2 className="text-lg font-semibold">User ID</h2>
-              </header>
-              <main>
-                <p className="break-words">{selectedUserId}</p>
-              </main>
-              <footer className="mt-6 flex justify-end">
-                <button
-                  onClick={closeModal}
-                  className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
-                >
-                  Close
-                </button>
-              </footer>
-            </div>
-          </div>
-
-          <style jsx>{`
-            @keyframes fadeIn {
-              from {
-                opacity: 0;
-                transform: translateY(-10px);
-              }
-              to {
-                opacity: 1;
-                transform: translateY(0);
-              }
-            }
-            .animate-fadeIn {
-              animation: fadeIn 0.2s ease-out forwards;
-            }
-          `}</style>
-        </>
-      )}
+      {/* Modal */}
+      <Dialog open={modalOpen} onOpenChange={setModalOpen}>
+        <DialogContent className="max-w-md w-full max-h-[90vh] overflow-auto bg-background text-foreground">
+          <DialogHeader>
+            <DialogTitle>User ID</DialogTitle>
+            <DialogDescription>
+              Here is the selected user ID detail.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="break-words my-4">{selectedUserId}</div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

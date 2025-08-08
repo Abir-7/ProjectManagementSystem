@@ -1,8 +1,8 @@
 "use client";
-import LoadingData from "@/components/Loading/LoadingData";
-import { DynamicPagination } from "@/components/Pagination/DynamicPagination";
-import TableData from "@/components/TableData/TableData";
 
+import LoadingData from "@/components/ui_components/Loading/LoadingData";
+import { DynamicPagination } from "@/components/ui_components/Pagination/DynamicPagination";
+import TableData from "@/components/ui_components/table_data/TableData";
 import { useGetSupervisorQuery } from "@/redux/api/adminApi/adminApi";
 import React, { useState } from "react";
 const ManageSupervisor = () => {

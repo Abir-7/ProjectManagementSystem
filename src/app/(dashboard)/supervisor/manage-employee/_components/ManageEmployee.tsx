@@ -1,6 +1,7 @@
 "use client";
-import { DynamicPagination } from "@/components/Pagination/DynamicPagination";
-import TableData from "@/components/TableData/TableData";
+
+import { DynamicPagination } from "@/components/ui_components/Pagination/DynamicPagination";
+import TableData from "@/components/ui_components/table_data/TableData";
 import React, { useState } from "react";
 
 const ManageEmployee = () => {

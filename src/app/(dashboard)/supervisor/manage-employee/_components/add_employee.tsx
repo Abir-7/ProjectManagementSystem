@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { userRoles } from "@/auth/authinterface";
 import { BaseForm } from "@/components/ui_components/shadcn_form/base_form";
 import { FormInput } from "@/components/ui_components/shadcn_form/form_input";
@@ -8,7 +7,7 @@ import { useCreateUserMutation } from "@/redux/api/authApi/authApi";
 import React from "react";
 import { toast } from "sonner";
 
-const AddSupervisor = () => {
+const AddEmployee = () => {
   const [createUser, { isLoading }] = useCreateUserMutation();
 
   const onSubmit = async (data: any, reset: () => void) => {
@@ -16,7 +15,7 @@ const AddSupervisor = () => {
 
     const res = (await createUser({
       ...data,
-      role: userRoles.SUPERVISOR,
+      role: userRoles.EMPLOYEE,
     })) as unknown as ApiResponse<any>;
 
     if (res.data?.success) {
@@ -24,18 +23,21 @@ const AddSupervisor = () => {
       toast.success(res?.data?.message);
     } else {
       console.log(res);
-      toast.error(res.error?.data?.message || "Something went wrong!");
+      toast.error(res.error?.data?.message || "Something went wrong! ");
     }
   };
-
   return (
     <BaseForm
       isLoading={isLoading}
-      btnText="Add"
+      btnText="Add Employee"
       onSubmit={onSubmit}
-      defaultValues={{ fullName: "", email: "", password: "" }}
+      defaultValues={{
+        fullName: "",
+        email: "",
+        password: "",
+      }}
     >
-      <h1 className="font-semibold text-foreground ">Supervisor Details</h1>
+      <h1 className="font-semibold text-gray-900 ">User Details</h1>
       <FormInput name="fullName" label="Name"></FormInput>
       <FormInput name="email" label="Email"></FormInput>
       <FormInput name="phone" label="Mobile"></FormInput>
@@ -44,4 +46,4 @@ const AddSupervisor = () => {
   );
 };
 
-export default AddSupervisor;
+export default AddEmployee;

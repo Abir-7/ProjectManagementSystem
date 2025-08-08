@@ -2,10 +2,10 @@ import React from "react";
 
 const LoadingData = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white">
-      <div className="flex flex-col items-center gap-2 text-gray-900">
+    <div className="flex items-center justify-center min-h-screen bg-background">
+      <div className="flex flex-col items-center gap-2 text-foreground">
         <svg
-          className="animate-spin h-6 w-6 text-gray-900"
+          className="animate-spin h-6 w-6 text-foreground"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
@@ -24,7 +24,7 @@ const LoadingData = () => {
             d="M4 12a8 8 0 018-8v8z"
           ></path>
         </svg>
-        <span className="text-sm font-medium">Loading...</span>
+        <span className="text-sm font-medium text-foreground">Loading...</span>
       </div>
     </div>
   );

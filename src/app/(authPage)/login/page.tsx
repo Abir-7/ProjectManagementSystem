@@ -8,8 +8,9 @@ import { useLoginMutation } from "@/redux/api/authApi/authApi";
 import { addAuthData } from "@/redux/features/auth/auth";
 
 import { toast } from "sonner";
-import { BaseForm } from "@/components/ShadCN_Form/BaseForm";
-import { FormInput } from "@/components/ShadCN_Form/FormInput";
+import { BaseForm } from "@/components/ui_components/shadcn_form/base_form";
+import { FormInput } from "@/components/ui_components/shadcn_form/form_input";
+import { ModeToggle } from "@/components/ui_components/theme_toggle_button/mode_toggle";
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -57,11 +58,13 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-          Login
-        </h2>
+    <div className="min-h-screen  w-full flex relative items-center justify-center px-4">
+      <div className="absolute top-5 right-5">
+        <ModeToggle></ModeToggle>
+      </div>
+
+      <div className="w-full max-w-md  rounded-2xl shadow-lg p-8">
+        <h2 className="text-2xl font-bold text-center  mb-6">Login</h2>
 
         <BaseForm
           btnText="Login"

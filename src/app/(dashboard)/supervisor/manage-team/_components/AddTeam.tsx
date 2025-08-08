@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { BaseForm } from "@/components/ShadCN_Form/BaseForm";
-import { FormInput } from "@/components/ShadCN_Form/FormInput";
-import { FormSelect } from "@/components/ShadCN_Form/FormSelect";
+
+import { BaseForm } from "@/components/ui_components/shadcn_form/base_form";
+import { FormInput } from "@/components/ui_components/shadcn_form/form_input";
+import { FormSelect } from "@/components/ui_components/shadcn_form/form_select";
 import React from "react";
 
 const AddTeam = () => {
@@ -25,7 +26,10 @@ const AddTeam = () => {
 
       <FormSelect
         label="Leader"
-        options={[{ label: "abir", value: "131231" }]}
+        options={[
+          { label: "abir", value: "131231" },
+          { label: "abir2", value: "1312312" },
+        ]}
         name="leader"
       ></FormSelect>
     </BaseForm>

@@ -1,5 +1,6 @@
 "use client";
-import { TUserRoles } from "@/interface/authinterface";
+
+import { TUserRoles } from "@/auth/authinterface";
 import { useAppSelector } from "@/redux/hooks";
 import React, { ReactNode } from "react";
 
