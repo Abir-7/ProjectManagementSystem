@@ -35,6 +35,7 @@ const AddEmployee = () => {
         fullName: "",
         email: "",
         password: "",
+        phone: "",
       }}
     >
       <h1 className="font-semibold text-gray-900 ">User Details</h1>
