@@ -1,4 +1,4 @@
-import { TUserRoles } from "@/interface/authinterface";
+import { TUserRoles } from "@/auth/authinterface";
 import { baseApi } from "../baseApi";
 
 export const authApi = baseApi.injectEndpoints({

@@ -37,6 +37,7 @@ const ManageTeam = () => {
     <div className=" p-4  h-[calc(100vh-109px)]    flex flex-col justify-between">
       <div>
         <TableData
+          isFetching={false}
           data={invoices}
           columns={columns}
           showTotal={{ accessor: "totalAmount", currencySymbol: "$" }}

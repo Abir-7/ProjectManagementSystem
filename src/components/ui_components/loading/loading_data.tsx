@@ -2,7 +2,7 @@ import React from "react";
 
 const LoadingData = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-background">
+    <div className="flex items-center justify-center h-[calc(100vh-196px)] bg-background">
       <div className="flex flex-col items-center gap-2 text-foreground">
         <svg
           className="animate-spin h-6 w-6 text-foreground"

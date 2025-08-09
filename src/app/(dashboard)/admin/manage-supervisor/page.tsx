@@ -4,8 +4,8 @@ import React from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import AddSupervisor from "./_adminComponent/AddSupervisor";
-import ManageSupervisor from "./_adminComponent/ManageSupervisor";
+import AddSupervisor from "./_adminComponent/add_supervisor";
+import ManageSupervisor from "./_adminComponent/manage_supervisor";
 
 const Page: React.FC = () => {
   return (

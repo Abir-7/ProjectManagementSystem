@@ -3,8 +3,8 @@
 import React from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import AddTeam from "./_components/AddTeam";
-import ManageTeam from "./_components/ManageTeam";
+import AddTeam from "./_components/add_team";
+import ManageTeam from "./_components/manage_team";
 
 const Page: React.FC = () => {
   return (

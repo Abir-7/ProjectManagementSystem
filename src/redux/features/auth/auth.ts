@@ -1,4 +1,4 @@
-import { TUserRoles } from "@/interface/authinterface";
+import { TUserRoles } from "@/auth/authinterface";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface AuthState {

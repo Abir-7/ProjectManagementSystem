@@ -1,15 +1,15 @@
 "use client";
 
-import LoadingData from "@/components/ui_components/Loading/LoadingData";
+import LoadingData from "@/components/ui_components/loading/loading_data";
 import { DynamicPagination } from "@/components/ui_components/Pagination/DynamicPagination";
 import TableData from "@/components/ui_components/table_data/TableData";
-import { useGetSupervisorQuery } from "@/redux/api/adminApi/adminApi";
+import { useGetSupervisorQuery } from "@/redux/api/admin_api/admin_api";
 import React, { useState } from "react";
 const ManageSupervisor = () => {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [page, setPage] = useState(1);
 
-  const { data, isLoading } = useGetSupervisorQuery({
+  const { data, isLoading, isFetching } = useGetSupervisorQuery({
     page,
     limit: 10,
     searchTerm,
@@ -37,11 +37,11 @@ const ManageSupervisor = () => {
     { header: "Action", accessor: "_id" }, // We use id here for action
   ];
 
-  console.log(data.meta);
   return (
-    <div className=" p-4  h-[calc(100vh-109px)]    flex flex-col justify-between">
+    <div className=" p-4    flex flex-col justify-between">
       <div>
         <TableData
+          isFetching={isFetching}
           data={invoices}
           columns={columns}
           showTotal={{ accessor: "totalAmount", currencySymbol: "$" }}

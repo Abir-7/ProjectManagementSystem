@@ -1,4 +1,4 @@
-import { TUserRoles } from "@/interface/authinterface";
+import { TUserRoles } from "@/auth/authinterface";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 

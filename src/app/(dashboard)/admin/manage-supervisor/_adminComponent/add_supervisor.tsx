@@ -4,7 +4,7 @@ import { userRoles } from "@/auth/authinterface";
 import { BaseForm } from "@/components/ui_components/shadcn_form/base_form";
 import { FormInput } from "@/components/ui_components/shadcn_form/form_input";
 import { ApiResponse } from "@/redux/api/api.interface";
-import { useCreateUserMutation } from "@/redux/api/authApi/authApi";
+import { useCreateUserMutation } from "@/redux/api/auth_api/auth_api";
 import React from "react";
 import { toast } from "sonner";
 

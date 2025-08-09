@@ -4,7 +4,7 @@ import React from "react";
 
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/redux/hooks";
-import { useLoginMutation } from "@/redux/api/authApi/authApi";
+import { useLoginMutation } from "@/redux/api/auth_api/auth_api";
 import { addAuthData } from "@/redux/features/auth/auth";
 
 import { toast } from "sonner";

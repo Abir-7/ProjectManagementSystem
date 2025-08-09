@@ -7,3 +7,11 @@ export const userRoles = {
   LEADER: "LEADER",
   SUPERVISOR: "SUPERVISOR",
 } as const;
+
+export type TUserStatus = "DELETED" | "BLOCKED" | "WORKING";
+
+export const userStatus = {
+  DELETED: "DELETED",
+  BLOCKED: "BLOCKED",
+  WORKING: "WORKING",
+};
