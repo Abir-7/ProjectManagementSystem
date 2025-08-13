@@ -1,73 +1,60 @@
-import { useState } from "react";
-
-interface IProject {
-  name: string;
-  client: string;
-  status: string;
-  startDate: string;
-  endDate: string;
-}
-
-// 30 demo projects
-const demoProjects: IProject[] = Array.from({ length: 30 }, (_, i) => ({
-  name: `Project ${i + 1}`,
-  client: `Client ${i + 1}`,
-  status: i % 3 === 0 ? "Completed" : i % 3 === 1 ? "In Progress" : "Pending",
-  startDate: `2025-0${(i % 12) + 1}-01`,
-  endDate: `2025-0${(i % 12) + 1}-28`,
-}));
+import React from "react";
 
 const ManageProjectSupervisor = () => {
-  const [projects] = useState<IProject[]>(demoProjects);
+  const projects = [
+    {
+      _id: "68987f1c011ba44ebcc0c9ec",
+      name: "Website Redesign",
+      clientName: "Acme Corp",
+      budget: 5000,
+      duration: 3,
+      salesName: "John Doe",
+      googleSheetLink: "https://docs.google.com/spreadsheets/d/abc123",
+      teamGrouplink: "https://teams.microsoft.com/l/team/xyz789",
+      status: "HOLD",
+      createdAt: "2025-08-10T11:14:36.206Z",
+      updatedAt: "2025-08-10T11:14:36.206Z",
+      __v: 0,
+      teamProjects: [
+        {
+          _id: "68987f1c011ba44ebcc0c9f1",
+          team: "6898286e77e19f160a4d211c",
+          project: "68987f1c011ba44ebcc0c9ec",
+          createdAt: "2025-08-10T11:14:36.376Z",
+          updatedAt: "2025-08-10T11:14:36.376Z",
+          __v: 0,
+        },
+      ],
+      phases: [
+        {
+          _id: "68987f1c011ba44ebcc0c9ee",
+          name: "Design Phase",
+          budget: 15000,
+          deadline: "2025-10-01T00:00:00.000Z",
+          status: "HOLD",
+          project: "68987f1c011ba44ebcc0c9ec",
+          __v: 0,
+          createdAt: "2025-08-10T11:14:36.292Z",
+          updatedAt: "2025-08-10T11:14:36.292Z",
+        },
+        {
+          _id: "68987f1c011ba44ebcc0c9ef",
+          name: "Development Phase",
+          budget: 35000,
+          deadline: "2026-03-01T00:00:00.000Z",
+          status: "ONGOING",
+          project: "68987f1c011ba44ebcc0c9ec",
+          __v: 0,
+          createdAt: "2025-08-10T11:14:36.292Z",
+          updatedAt: "2025-08-11T16:13:35.237Z",
+          fixed_kpi: 0,
+          kpi: 0,
+        },
+      ],
+    },
+  ];
 
-  return (
-    <div className="p-4">
-      <div className="border rounded-lg shadow-md  h-[calc(100vh-199px)] overflow-y-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-white sticky top-0 z-20 ">
-            <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                Project Name
-              </th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                Client Name
-              </th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                Status
-              </th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                Start Date
-              </th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">
-                End Date
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {projects.map((project, idx) => (
-              <tr key={idx} className="hover:bg-gray-50">
-                <td className="px-4 py-2 text-sm text-gray-700">
-                  {project.name}
-                </td>
-                <td className="px-4 py-2 text-sm text-gray-700">
-                  {project.client}
-                </td>
-                <td className="px-4 py-2 text-sm text-gray-700">
-                  {project.status}
-                </td>
-                <td className="px-4 py-2 text-sm text-gray-700">
-                  {project.startDate}
-                </td>
-                <td className="px-4 py-2 text-sm text-gray-700">
-                  {project.endDate}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+  return <div> sdads</div>;
 };
 
 export default ManageProjectSupervisor;
