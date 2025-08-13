@@ -50,9 +50,9 @@ export function AppSidebar() {
     },
     {
       title: "Manage Project",
-      url: "/leader/manage-projects",
+      url: `/${role?.toLowerCase()}/manage-projects`,
       icon: Calendar,
-      roles: userRoles.LEADER,
+      roles: [userRoles.LEADER, userRoles.EMPLOYEE, userRoles.SUPERVISOR],
     },
   ];
 
