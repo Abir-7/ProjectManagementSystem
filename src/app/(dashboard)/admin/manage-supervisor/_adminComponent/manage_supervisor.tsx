@@ -1,7 +1,7 @@
 "use client";
 
 import LoadingData from "@/components/ui_components/loading/loading_data";
-import { DynamicPagination } from "@/components/ui_components/Pagination/DynamicPagination";
+import { DynamicPagination } from "@/components/ui_components/pagination/DynamicPagination";
 import TableData from "@/components/ui_components/table_data/TableData";
 import { useGetSupervisorQuery } from "@/redux/api/admin_api/admin_api";
 import React, { useState } from "react";

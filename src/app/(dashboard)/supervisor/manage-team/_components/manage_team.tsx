@@ -1,6 +1,6 @@
 "use client";
 
-import { DynamicPagination } from "@/components/ui_components/Pagination/DynamicPagination";
+import { DynamicPagination } from "@/components/ui_components/pagination/DynamicPagination";
 import TableData from "@/components/ui_components/table_data/TableData";
 import React, { useState } from "react";
 const ManageTeam = () => {

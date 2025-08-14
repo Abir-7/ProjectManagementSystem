@@ -2,7 +2,7 @@
 import React from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ManageProjectSupervisor from "./_component/manage_project";
+import ManageProjectSupervisor from "./_component/manage_project_supervisor";
 
 const Page: React.FC = () => {
   return (

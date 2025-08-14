@@ -17,7 +17,7 @@ const layout = ({ children }: { children: ReactNode }) => {
               <ModeToggle></ModeToggle>
             </div>
           </div>
-          <div className=" lg:container mx-auto p-4 h-[calc(100vh-48px)] overflow-y-auto">
+          <div className="  p-4 h-[calc(100vh-48px)] overflow-y-auto">
             {children}
           </div>
         </main>
