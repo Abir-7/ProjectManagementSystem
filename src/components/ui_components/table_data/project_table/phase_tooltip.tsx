@@ -1,11 +1,10 @@
 "use client";
 import React from "react";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 
 interface Phase {
   _id: string;
@@ -43,32 +42,30 @@ const PhaseTooltip = ({ phase, isTooltip = false }: PhaseTooltipProps) => {
   if (!isTooltip) return phaseBlock;
 
   return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>{phaseBlock}</TooltipTrigger>
-        <TooltipContent className="max-w-sm bg-popover text-popover-foreground border border-border shadow-md p-4 w-96">
-          {isLoading ? (
-            <span>Loading...</span>
-          ) : isError ? (
-            <span>Error loading details</span>
-          ) : details ? (
-            <div className="space-y-1 text-sm">
-              <p>
-                <strong>Start:</strong> {details.startDate}
-              </p>
-              <p>
-                <strong>End:</strong> {details.endDate}
-              </p>
-              <p>
-                <strong>Description:</strong> {details.description}
-              </p>
-            </div>
-          ) : (
-            <span>No details available</span>
-          )}
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <HoverCard>
+      <HoverCardTrigger asChild>{phaseBlock}</HoverCardTrigger>
+      <HoverCardContent className="max-w-sm bg-popover text-popover-foreground border border-border shadow-md p-4 w-96">
+        {isLoading ? (
+          <span>Loading...</span>
+        ) : isError ? (
+          <span>Error loading details</span>
+        ) : details ? (
+          <div className="space-y-1 text-sm">
+            <p>
+              <strong>Start:</strong> {details.startDate}
+            </p>
+            <p>
+              <strong>End:</strong> {details.endDate}
+            </p>
+            <p>
+              <strong>Description:</strong> {details.description}
+            </p>
+          </div>
+        ) : (
+          <span>No details available</span>
+        )}
+      </HoverCardContent>
+    </HoverCard>
   );
 };
 
