@@ -1,109 +1,85 @@
-"use client";
-
 import LoadingData from "@/components/ui_components/loading/loading_data";
 import { DynamicPagination } from "@/components/ui_components/pagination/DynamicPagination";
-import TableData from "@/components/ui_components/table_data/TableData";
+import SearchFilters from "@/components/ui_components/search_filter/search_filter";
+import EmployeeTable from "@/components/ui_components/table_data/employee_table/employee_table";
+
 import useDebounce from "@/lib/utils/debounce";
+import { useGetEmployeeStatusListQuery } from "@/redux/api/employee_api/employee_api";
 import { useGetEmployeeQuery } from "@/redux/api/supervisor_api/supervisor_api";
-import React, { useEffect, useState } from "react";
-import { TeamSelect } from "./select_team_filter";
-import { toast } from "sonner";
-import ActionModalData from "./action_modal_data";
+import { useGetTeamListForFilterQuery } from "@/redux/api/team_api/team_api";
 
-const ManageEmployee = () => {
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const [selectedTeam, setSelectedTeam] = useState<"all" | "no-team" | string>(
-    "all"
-  );
+import { useState } from "react";
+
+const ManageEmployeeSupervisor = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
+  const [statusFilterOne, setStatusFilterOne] = useState<string | undefined>(
+    "ALL"
+  );
+  const [statusFilterTwo, setStatusFilterTwo] = useState<string | undefined>(
+    "ALL"
+  );
+
+  console.log(statusFilterTwo, "lllldd");
   const [page, setPage] = useState(1);
-  console.log(debouncedSearchTerm);
-  const { data, isLoading, isFetching, isError } = useGetEmployeeQuery({
-    page,
-    limit: 10,
-    searchTerm: debouncedSearchTerm,
-    teamId: selectedTeam, // Pass selected team here
-  });
-  console.log(data?.data);
 
-  const invoices = data?.data;
+  const { data, isLoading, isFetching } = useGetEmployeeQuery(
+    {
+      page,
+      limit: 12,
+      searchTerm: debouncedSearchTerm,
+      teamId: statusFilterOne || "",
+      employeeStatus: statusFilterTwo || "ALL",
+    },
+    { refetchOnMountOrArgChange: true }
+  );
 
-  const columns: {
-    header: string;
-    accessor:
-      | "name"
-      | "email"
-      | "role"
-      | "status"
-      | "image"
-      | "phone"
-      | "_id"
-      | "teamId"
-      | "teamName";
-    alignRight?: boolean;
-  }[] = [
-    { header: "Image", accessor: "image" },
-    { header: "Name", accessor: "name" },
-    { header: "Email", accessor: "email" },
-    { header: "Role", accessor: "role" },
-    { header: "Status", accessor: "status" },
+  // const { data: employeeStatusList } = useGetEmployeeStatusListQuery("");
 
-    { header: "Mobile", accessor: "phone" },
-    { header: "Team", accessor: "teamName" },
-    { header: "Action", accessor: "_id" }, // We use id here for action
-  ];
+  const { data: teamListForFilter } = useGetTeamListForFilterQuery("");
+  const { data: employeeStatusList } = useGetEmployeeStatusListQuery("");
 
-  const teams = [
-    { id: "1", name: "Engineering" },
-    { id: "2", name: "Marketing" },
-    { id: "3", name: "Sales" },
-  ];
+  if (isLoading) return <LoadingData />;
 
-  const handleSelect = (value: "all" | "no-team" | string | null) => {
-    console.log("Selected team:", value);
-    // If you want to allow clearing selection, you can keep `null` too
-    setSelectedTeam(value ?? "all"); // fallback to "all" if null
-  };
-
-  useEffect(() => {
-    if (isError) {
-      toast.error("Something wrong!");
+  const teamOptions = teamListForFilter?.data.map(
+    (team: { name: string; _id: string }) => {
+      return { name: team.name, value: team._id };
     }
-  }, [isError]);
-
-  if (isLoading) {
-    return <LoadingData></LoadingData>;
-  }
+  );
+  console.log(employeeStatusList, "gf");
+  const employees = data?.data || [];
+  const meta = data?.meta || { limit: 12, page: 1, totalItem: 1 };
 
   return (
-    <div className=" p-4    flex flex-col justify-between">
-      <div>
-        <TableData
-          isFetching={isFetching}
-          data={invoices}
-          columns={columns}
-          showTotal={{ accessor: "totalAmount", currencySymbol: "$" }}
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-        >
-          <TeamSelect
-            teams={teams}
-            selectedTeam={selectedTeam}
-            onSelect={handleSelect}
-          ></TeamSelect>
-        </TableData>
-      </div>
+    <div>
+      {/* Search & Status Filter */}
+      <SearchFilters
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        filterOne={statusFilterOne}
+        setFilterOne={setStatusFilterOne}
+        placeHolderOne="Filter by Team"
+        optionOne={teamOptions}
+        optionTwo={employeeStatusList?.data}
+        filterTwo={statusFilterTwo}
+        setFilterTwo={setStatusFilterTwo}
+        placeHolderTwo="Filter by Status"
+      />
 
-      <div className="mt-5 pb-4">
+      {/* Employee Table */}
+      <EmployeeTable employees={employees} isFetching={isFetching} />
+
+      {/* Pagination */}
+      <div className="pt-5">
         <DynamicPagination
-          page={data?.meta?.page || 1}
-          limit={data?.meta?.limit || 1}
-          total={data?.meta?.totalItem || 1} // total from API response
-          onPageChange={(newPage) => setPage(newPage)}
+          page={page}
+          limit={meta.limit}
+          total={meta.totalItem}
+          onPageChange={(p) => setPage(p)}
         />
       </div>
     </div>
   );
 };
 
-export default ManageEmployee;
+export default ManageEmployeeSupervisor;

@@ -1,61 +1,62 @@
-"use client";
-
+import LoadingData from "@/components/ui_components/loading/loading_data";
 import { DynamicPagination } from "@/components/ui_components/pagination/DynamicPagination";
-import TableData from "@/components/ui_components/table_data/TableData";
-import React, { useState } from "react";
-const ManageTeam = () => {
-  const invoices = [
-    {
-      invoice: "INV001",
-      paymentStatus: "Paid",
-      paymentMethod: "Credit Card",
-      totalAmount: "$250.00",
-    },
-    {
-      invoice: "INV002",
-      paymentStatus: "Pending",
-      paymentMethod: "PayPal",
-      totalAmount: "$150.00",
-    },
-  ];
+import SearchFilters from "@/components/ui_components/search_filter/search_filter";
 
-  const columns: {
-    header: string;
-    accessor: "invoice" | "paymentStatus" | "paymentMethod" | "totalAmount";
-    alignRight?: boolean;
-  }[] = [
-    { header: "Invoice", accessor: "invoice" },
-    { header: "Status", accessor: "paymentStatus" },
-    { header: "Method", accessor: "paymentMethod" },
-    { header: "Amount", accessor: "totalAmount", alignRight: true },
-  ];
+import TeamTable from "@/components/ui_components/table_data/team_table/team_table";
+import useDebounce from "@/lib/utils/debounce";
+import {
+  useGetTeamListQuery,
+  useGetTeamStatusListQuery,
+} from "@/redux/api/team_api/team_api";
+import { useState } from "react";
 
-  const [searchTerm, setSearchTerm] = React.useState("");
+const ManageTeamSupervisor = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+  const [statusFilter, setStatusFilter] = useState<string | undefined>();
   const [page, setPage] = useState(1);
-  const limit = 10;
-  return (
-    <div className=" p-4  h-[calc(100vh-109px)]    flex flex-col justify-between">
-      <div>
-        <TableData
-          isFetching={false}
-          data={invoices}
-          columns={columns}
-          showTotal={{ accessor: "totalAmount", currencySymbol: "$" }}
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-        ></TableData>
-      </div>
 
-      <div className="mt-5 pb-4">
+  const { data, isLoading, isFetching } = useGetTeamListQuery({
+    page,
+    limit: 10,
+    searchTerm: debouncedSearchTerm,
+    status: statusFilter || "",
+  });
+
+  const { data: teamStatusList } = useGetTeamStatusListQuery("");
+  console.log(teamStatusList, "fff");
+
+  if (isLoading) return <LoadingData />;
+
+  const teams = data?.data || [];
+  const meta = data?.meta || { limit: 10, page: 1, totalItem: 1 };
+  console.log(meta, "Ggg");
+  return (
+    <div>
+      {/* Search and Filters */}
+
+      <SearchFilters
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        filterOne={statusFilter}
+        setFilterOne={setStatusFilter}
+        placeHolderOne="Filter by Status"
+        optionOne={teamStatusList?.data}
+      />
+      {/* Team Table */}
+      <TeamTable teams={teams} isFetching={isFetching} />
+
+      {/* Pagination */}
+      <div className="pt-5">
         <DynamicPagination
           page={page}
-          limit={limit}
-          total={100} // total from API response
-          onPageChange={(newPage) => setPage(newPage)}
+          limit={meta.limit}
+          total={meta.totalItem}
+          onPageChange={(p) => setPage(p)}
         />
       </div>
     </div>
   );
 };
 
-export default ManageTeam;
+export default ManageTeamSupervisor;

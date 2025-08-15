@@ -14,7 +14,7 @@ type Team = {
   name: string;
 };
 
-type SelectedTeam = "all" | "no-team" | string;
+type SelectedTeam = "ALL" | "no-team" | string;
 
 interface TeamSelectProps {
   teams: Team[];
