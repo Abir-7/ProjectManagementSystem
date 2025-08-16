@@ -14,10 +14,10 @@ const ManageEmployeeSupervisor = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
   const [statusFilterOne, setStatusFilterOne] = useState<string | undefined>(
-    "ALL"
+    ""
   );
   const [statusFilterTwo, setStatusFilterTwo] = useState<string | undefined>(
-    "ALL"
+    ""
   );
 
   console.log(statusFilterTwo, "lllldd");
@@ -29,7 +29,7 @@ const ManageEmployeeSupervisor = () => {
       limit: 12,
       searchTerm: debouncedSearchTerm,
       teamId: statusFilterOne || "",
-      employeeStatus: statusFilterTwo || "ALL",
+      employeeStatus: statusFilterTwo || "",
     },
     { refetchOnMountOrArgChange: true }
   );
@@ -58,11 +58,11 @@ const ManageEmployeeSupervisor = () => {
         setSearchTerm={setSearchTerm}
         filterOne={statusFilterOne}
         setFilterOne={setStatusFilterOne}
-        placeHolderOne="Filter by Team"
         optionOne={teamOptions}
         optionTwo={employeeStatusList?.data}
         filterTwo={statusFilterTwo}
         setFilterTwo={setStatusFilterTwo}
+        placeHolderOne={"Filter by Team"}
         placeHolderTwo="Filter by Status"
       />
 

@@ -15,8 +15,8 @@ import { useState } from "react";
 const ManageProjectSupervisor = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
-  const [statusFilter, setStatusFilter] = useState<string | undefined>();
-  const [teamFilter, setTeamFilter] = useState<string | undefined>();
+  const [statusFilter, setStatusFilter] = useState<string | undefined>("");
+  const [teamFilter, setTeamFilter] = useState<string | undefined>("");
   const [page, setPage] = useState(1);
 
   const { data, isLoading, isFetching } = useGetAllProjectsQuery({

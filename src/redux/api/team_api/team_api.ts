@@ -28,6 +28,17 @@ export const teamApi = baseApi.injectEndpoints({
         return `/team/team-list?${params.toString()}`;
       },
     }),
+    getTeamdetails: builder.query({
+      query: (teamId: string) => {
+        return `/team/team-details/${teamId}`;
+      },
+    }),
+    getTeamMemberList: builder.query({
+      query: (teamId: string) => {
+        return `/team/team-member-list/${teamId}`;
+      },
+    }),
+
     getTeamStatusList: builder.query({
       query: () => {
         return `/team/get-status-list-of-team`;
@@ -40,4 +51,6 @@ export const {
   useGetTeamListForFilterQuery,
   useGetTeamListQuery,
   useGetTeamStatusListQuery,
+  useGetTeamdetailsQuery,
+  useGetTeamMemberListQuery,
 } = teamApi;
