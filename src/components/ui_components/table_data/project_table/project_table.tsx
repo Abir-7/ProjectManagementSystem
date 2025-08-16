@@ -1,14 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import PhaseTooltip from "./phase_tooltip";
+import TableLoading from "../../loading/table_loading";
 
 const ProjectTable = ({
   projects,
   isTooltip,
+  isFetching,
 }: {
   projects: any;
   isTooltip: boolean;
+  isFetching: boolean;
 }) => {
+  if (isFetching) {
+    return <TableLoading></TableLoading>;
+  }
+
   return (
     <div className="p-2">
       {/* Table wrapper with scroll */}

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from "next/image";
 import React from "react";
+import TableLoading from "../../loading/table_loading";
 
 const EmployeeTable = ({
   employees,
@@ -10,7 +11,7 @@ const EmployeeTable = ({
   isFetching: boolean;
 }) => {
   if (isFetching) {
-    return <div className="p-4 text-center">Loading...</div>;
+    return <TableLoading></TableLoading>;
   }
 
   return (

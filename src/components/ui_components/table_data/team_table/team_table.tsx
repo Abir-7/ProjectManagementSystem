@@ -3,6 +3,8 @@
 import { useAppSelector } from "@/redux/hooks";
 import Link from "next/link";
 import React from "react";
+import LoadingData from "../../loading/loading_data";
+import TableLoading from "../../loading/table_loading";
 
 const TeamTable = ({
   teams,
@@ -14,7 +16,7 @@ const TeamTable = ({
   const { user } = useAppSelector((state) => state.auth);
 
   if (isFetching) {
-    return <div className="p-4 text-center">Loading...</div>;
+    return <TableLoading></TableLoading>;
   }
 
   return (
@@ -44,6 +46,7 @@ const TeamTable = ({
                     href={`/${user?.role.toLocaleLowerCase()}/manage-team/${
                       team._id
                     }`}
+                    className="hover:underline underline-offset-2 duration-300 font-semibold"
                   >
                     {team.name}
                   </Link>

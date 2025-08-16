@@ -2,7 +2,7 @@ import React from "react";
 
 const TableLoading = () => {
   return (
-    <div className="flex items-center justify-center  py-10 bg-background">
+    <div className="flex items-center justify-center  pt-56 bg-background">
       <div className="flex flex-col items-center gap-2 text-foreground">
         <svg
           className="animate-spin h-6 w-6 text-foreground"
