@@ -35,10 +35,10 @@ const TeamDetails = () => {
   }
 
   return (
-    <div className="p-6">
+    <div className="">
       <Card className="h-[calc(100vh-120px)] shadow-none border-0">
         {/* Header */}
-        <CardContent className="p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 ">
+        <CardContent className=" flex flex-col md:flex-row md:items-center md:justify-between gap-4 ">
           <div>
             <h1 className="text-2xl font-bold">{team.name}</h1>
             <p className="text-sm text-muted-foreground mt-1">
