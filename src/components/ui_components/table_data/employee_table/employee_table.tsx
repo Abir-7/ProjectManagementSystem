@@ -21,14 +21,16 @@ const EmployeeTable = ({
           {/* Table Head */}
           <thead className="sticky bg-accent top-0 z-10">
             <tr>
-              {["Image", "Name", "Email", "Mobile", "Status"].map((header) => (
-                <th
-                  key={header}
-                  className="px-4 py-2 text-left text-sm font-medium text-foreground/80"
-                >
-                  {header}
-                </th>
-              ))}
+              {["Image", "Name", "Email", "Mobile", "Status", "Role"].map(
+                (header) => (
+                  <th
+                    key={header}
+                    className="px-4 py-2 text-left text-sm font-medium text-foreground/80"
+                  >
+                    {header}
+                  </th>
+                )
+              )}
             </tr>
           </thead>
 
@@ -64,6 +66,7 @@ const EmployeeTable = ({
 
                 {/* Status */}
                 <td className="px-4 py-2">{emp.status}</td>
+                <td className="px-4 py-2">{emp.role}</td>
               </tr>
             ))}
           </tbody>

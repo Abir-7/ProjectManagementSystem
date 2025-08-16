@@ -46,10 +46,10 @@ const ManageEmployeeSupervisor = () => {
       return { name: team.name, value: team._id };
     }
   );
-  console.log(employeeStatusList, "gf");
+
   const employees = data?.data || [];
   const meta = data?.meta || { limit: 12, page: 1, totalItem: 1 };
-
+  console.log(data);
   return (
     <div>
       {/* Search & Status Filter */}
