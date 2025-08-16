@@ -1,8 +1,8 @@
 import React from "react";
 
-const TableLoading = () => {
+const LoadingModal = () => {
   return (
-    <div className="flex items-center justify-center  pt-24 bg-background">
+    <div className="flex items-center justify-center  pt-5 bg-background">
       <div className="flex flex-col items-center gap-2 text-foreground">
         <svg
           className="animate-spin h-6 w-6 text-foreground"
@@ -30,4 +30,4 @@ const TableLoading = () => {
   );
 };
 
-export default TableLoading;
+export default LoadingModal;

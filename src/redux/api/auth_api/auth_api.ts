@@ -25,9 +25,16 @@ export const authApi = baseApi.injectEndpoints({
     getMe: builder.query({
       query: () => "/user/me",
     }),
+    getUserRole: builder.query({
+      query: () => "/auth/get-user-roles",
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useLoginMutation, useGetMeQuery, useCreateUserMutation } =
-  authApi;
+export const {
+  useLoginMutation,
+  useGetMeQuery,
+  useCreateUserMutation,
+  useGetUserRoleQuery,
+} = authApi;

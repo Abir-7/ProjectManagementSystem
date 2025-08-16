@@ -30,7 +30,23 @@ export const supervisorApi = baseApi.injectEndpoints({
         return `/user/get-employee-list?${params.toString()}`;
       },
     }),
+    updateUserRoleStatus: builder.mutation({
+      query: ({
+        userId,
+        role,
+        status,
+      }: {
+        userId: string;
+        role?: string;
+        status?: string;
+      }) => ({
+        url: `/user/update-status-role`,
+        method: "PATCH",
+        body: { userId, role, status },
+      }),
+    }),
   }),
 });
 
-export const { useGetEmployeeQuery } = supervisorApi;
+export const { useGetEmployeeQuery, useUpdateUserRoleStatusMutation } =
+  supervisorApi;

@@ -1,6 +1,6 @@
 import { baseApi } from "../baseApi";
 
-export const supervisorApi = baseApi.injectEndpoints({
+export const employeeApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getEmployeeStatusList: builder.query({
       query: () => {
@@ -10,4 +10,4 @@ export const supervisorApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetEmployeeStatusListQuery } = supervisorApi;
+export const { useGetEmployeeStatusListQuery } = employeeApi;
