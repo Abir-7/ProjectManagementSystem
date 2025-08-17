@@ -54,6 +54,12 @@ export function AppSidebar() {
       icon: Calendar,
       roles: [userRoles.LEADER, userRoles.EMPLOYEE, userRoles.SUPERVISOR],
     },
+    {
+      title: "Delivered Project",
+      url: `/${role?.toLowerCase()}/delivered-phase`,
+      icon: Calendar,
+      roles: [userRoles.LEADER, userRoles.EMPLOYEE, userRoles.SUPERVISOR],
+    },
   ];
 
   const pathname = usePathname();

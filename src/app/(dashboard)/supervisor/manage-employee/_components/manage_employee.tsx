@@ -1,5 +1,6 @@
 import LoadingData from "@/components/ui_components/loading/loading_data";
-import { DynamicPagination } from "@/components/ui_components/pagination/DynamicPagination";
+import { DynamicPagination } from "@/components/ui_components/Pagination/dynamic_pagination";
+
 import SearchFilters from "@/components/ui_components/search_filter/search_filter";
 import EmployeeTable from "@/components/ui_components/table_data/employee_table/employee_table";
 

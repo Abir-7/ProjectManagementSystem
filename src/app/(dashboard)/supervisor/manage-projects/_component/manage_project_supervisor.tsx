@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import LoadingData from "@/components/ui_components/loading/loading_data";
 import TableLoading from "@/components/ui_components/loading/table_loading";
-import { DynamicPagination } from "@/components/ui_components/pagination/DynamicPagination";
+import { DynamicPagination } from "@/components/ui_components/Pagination/dynamic_pagination";
 import SearchFilters from "@/components/ui_components/search_filter/search_filter";
 import ProjectTable from "@/components/ui_components/table_data/project_table/project_table";
 import useDebounce from "@/lib/utils/debounce";

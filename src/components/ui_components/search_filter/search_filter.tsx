@@ -20,6 +20,7 @@ interface ProjectFiltersProps {
   filterTwo?: string;
   placeHolderOne: string;
   placeHolderTwo?: string;
+  isAllTwo?: boolean;
 }
 
 const SearchFilters: React.FC<ProjectFiltersProps> = ({
@@ -33,6 +34,7 @@ const SearchFilters: React.FC<ProjectFiltersProps> = ({
   filterTwo,
   placeHolderOne,
   placeHolderTwo,
+  isAllTwo = true,
 }) => {
   return (
     <div className="flex flex-wrap gap-2 py-2">
@@ -61,9 +63,11 @@ const SearchFilters: React.FC<ProjectFiltersProps> = ({
           </SelectTrigger>
           <SelectContent>
             {" "}
-            <SelectItem key={"ALL"} value="ALL">
-              ALL
-            </SelectItem>
+            {isAllTwo && (
+              <SelectItem key={"ALL"} value="ALL">
+                ALL
+              </SelectItem>
+            )}
             {optionTwo?.map((team) => (
               <SelectItem key={team.value} value={team.value}>
                 {team.name}

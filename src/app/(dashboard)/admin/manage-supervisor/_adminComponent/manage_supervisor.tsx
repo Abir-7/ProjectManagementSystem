@@ -1,65 +1,7 @@
-"use client";
+import React from "react";
 
-import LoadingData from "@/components/ui_components/loading/loading_data";
-import { DynamicPagination } from "@/components/ui_components/pagination/DynamicPagination";
-import TableData from "@/components/ui_components/table_data/TableData";
-import { useGetSupervisorQuery } from "@/redux/api/admin_api/admin_api";
-import React, { useState } from "react";
 const ManageSupervisor = () => {
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const [page, setPage] = useState(1);
-
-  const { data, isLoading, isFetching } = useGetSupervisorQuery({
-    page,
-    limit: 10,
-    searchTerm,
-  });
-  console.log(data?.data);
-
-  if (isLoading) {
-    return <LoadingData></LoadingData>;
-  }
-
-  const invoices = data?.data;
-
-  const columns: {
-    header: string;
-    accessor: "name" | "email" | "role" | "status" | "image" | "phone" | "_id";
-    alignRight?: boolean;
-  }[] = [
-    { header: "Image", accessor: "image" },
-    { header: "Name", accessor: "name" },
-    { header: "Email", accessor: "email" },
-    { header: "Role", accessor: "role" },
-    { header: "Status", accessor: "status" },
-
-    { header: "Mobile", accessor: "phone" },
-    { header: "Action", accessor: "_id" }, // We use id here for action
-  ];
-
-  return (
-    <div className=" p-4    flex flex-col justify-between">
-      <div>
-        <TableData
-          isFetching={isFetching}
-          data={invoices}
-          columns={columns}
-          showTotal={{ accessor: "totalAmount", currencySymbol: "$" }}
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-        ></TableData>
-      </div>
-
-      <div className="mt-5 pb-4">
-        <DynamicPagination
-          page={data?.meta?.page || 1}
-          limit={data?.meta?.limit || 1}
-          total={data?.meta?.totalItem || 1} // total from API response
-          onPageChange={(newPage) => setPage(newPage)}
-        />
-      </div>
-    </div>
-  );
+  return <div>Manage Supervisor</div>;
 };
 
 export default ManageSupervisor;
