@@ -40,6 +40,29 @@ export const projectApi = baseApi.injectEndpoints({
         return `/project/get-project-status-list`;
       },
     }),
+    getMyTeamProjects: builder.query({
+      query: ({
+        page = 1,
+        limit = 10,
+        searchTerm = "",
+        projectStatus = "",
+      }) => {
+        const params = new URLSearchParams({
+          page: page.toString(),
+          limit: limit.toString(),
+        });
+
+        if (searchTerm) {
+          params.append("searchTerm", searchTerm);
+        }
+
+        if (projectStatus) {
+          params.append("projectStatus", projectStatus);
+        }
+
+        return `/project/get-my-team-projects?${params.toString()}`;
+      },
+    }),
   }),
 });
 
@@ -47,4 +70,5 @@ export const {
   useGetAllProjectsQuery,
   useGetPhaseDetailsQuery,
   useGetProjectStatusListQuery,
+  useGetMyTeamProjectsQuery,
 } = projectApi;
