@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-
-import { useState, useMemo } from "react";
 import LoadingData from "@/components/ui_components/loading/loading_data";
+
 import { DynamicPagination } from "@/components/ui_components/pagination/dynamic_pagination";
 import SearchFilters from "@/components/ui_components/search_filter/search_filter";
 import ProjectTable from "@/components/ui_components/table_data/project_table/project_table";
@@ -12,42 +11,35 @@ import {
   useGetProjectStatusListQuery,
 } from "@/redux/api/project_api/project_api";
 
+import { useState } from "react";
+
 const ManageProjectLeader = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
   const [statusFilter, setStatusFilter] = useState<string | undefined>("");
+
   const [page, setPage] = useState(1);
 
-  // Debounced search for API calls
-  const debouncedSearchTerm = useDebounce(searchTerm, 300);
-
-  // Queries
   const { data, isLoading, isFetching } = useGetMyTeamProjectsQuery({
     page,
     limit: 10,
     searchTerm: debouncedSearchTerm,
     projectStatus: statusFilter || "",
   });
-
+  console.dir(
+    data?.data.map((dta: any) => dta.projects),
+    "KKK"
+  );
   const { data: projectStatus } = useGetProjectStatusListQuery("");
 
-  // Derived memoized values
-  const projectStatusList = useMemo(
-    () => projectStatus?.data ?? [],
-    [projectStatus]
-  ) as any;
+  if (isLoading) {
+    return <LoadingData></LoadingData>;
+  }
 
-  const projects = useMemo(
-    () => data?.data?.map((d: any) => d.projects) ?? [],
-    [data]
-  );
-
-  const meta = useMemo(
-    () => data?.meta ?? { limit: 10, page: 1, totalItem: 1 },
-    [data]
-  );
-
-  if (isLoading) return <LoadingData />;
-
+  const projectStatusList = projectStatus?.data;
+  const projects = data?.data.map((dta: any) => dta.projects) || []; // fallback empty array
+  const meta = data?.meta || { limit: 10, page: 1, totalItem: 1 };
+  console.log(projectStatus);
   return (
     <div>
       <SearchFilters
@@ -59,18 +51,20 @@ const ManageProjectLeader = () => {
         optionOne={projectStatusList}
       />
 
-      <ProjectTable isFetching={isFetching} isTooltip projects={projects} />
+      <ProjectTable
+        isFetching={isFetching}
+        isTooltip={true}
+        projects={projects}
+      />
 
-      {meta.totalItem > 0 && (
-        <div className="pt-5">
-          <DynamicPagination
-            page={page}
-            limit={meta.limit}
-            total={meta.totalItem}
-            onPageChange={setPage}
-          />
-        </div>
-      )}
+      <div className="pt-5">
+        <DynamicPagination
+          page={page}
+          limit={meta.limit}
+          total={meta.totalItem}
+          onPageChange={(p) => setPage(p)}
+        />
+      </div>
     </div>
   );
 };

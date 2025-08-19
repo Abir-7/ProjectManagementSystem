@@ -27,6 +27,7 @@ const DeliveredPhaseTable = ({
                 "Status",
                 "Budget",
                 "Employee Name",
+                "Phase",
                 "Team",
               ].map((header) => (
                 <th
@@ -61,6 +62,7 @@ const DeliveredPhaseTable = ({
 
                 {/* Employee Name */}
                 <td className="px-4 py-2">{project.employee?.name || "—"}</td>
+                <td className="px-4 py-2">{project?.phase?.name || "—"}</td>
                 <td className="px-4 py-2">{project.team?.name || "—"}</td>
               </tr>
             ))}

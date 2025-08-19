@@ -15,6 +15,7 @@ const DeliveredData = () => {
       employee: { name: "John Doe" },
       team: { name: "JVAI" },
       createdAt: "2025-08-12",
+      phase: { name: "Back-End" },
     },
     {
       _id: "2",
@@ -25,6 +26,7 @@ const DeliveredData = () => {
       employee: { name: "Jane Smith" },
       team: { name: "JVAI" },
       createdAt: "2025-08-16",
+      phase: { name: "Back-End" },
     },
   ];
 

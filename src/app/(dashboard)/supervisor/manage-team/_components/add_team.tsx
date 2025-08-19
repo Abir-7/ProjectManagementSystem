@@ -27,8 +27,8 @@ const AddTeam = () => {
       <FormSelect
         label="Leader"
         options={[
-          { label: "abir", value: "131231" },
-          { label: "abir2", value: "1312312" },
+          { name: "abir", value: "131231" },
+          { name: "abir2", value: "1312312" },
         ]}
         name="leader"
       ></FormSelect>

@@ -1,19 +1,20 @@
-import LoadingData from "@/components/ui_components/loading/loading_data";
-import { DynamicPagination } from "@/components/ui_components/Pagination/dynamic_pagination";
+"use client";
 
+import { useState, useMemo } from "react";
+import LoadingData from "@/components/ui_components/loading/loading_data";
+import { DynamicPagination } from "@/components/ui_components/pagination/dynamic_pagination";
 import SearchFilters from "@/components/ui_components/search_filter/search_filter";
 import EmployeeTable from "@/components/ui_components/table_data/employee_table/employee_table";
-
 import useDebounce from "@/lib/utils/debounce";
 import { useGetEmployeeStatusListQuery } from "@/redux/api/employee_api/employee_api";
 import { useGetEmployeeQuery } from "@/redux/api/supervisor_api/supervisor_api";
 import { useGetTeamListForFilterQuery } from "@/redux/api/team_api/team_api";
 
-import { useState } from "react";
-
 const ManageEmployeeSupervisor = () => {
+  // Search & filter states
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
+
   const [statusFilterOne, setStatusFilterOne] = useState<string | undefined>(
     ""
   );
@@ -21,38 +22,38 @@ const ManageEmployeeSupervisor = () => {
     ""
   );
 
-  console.log(statusFilterTwo, "lllldd");
+  // Pagination
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, isFetching } = useGetEmployeeQuery(
-    {
-      page,
-      limit: 12,
-      searchTerm: debouncedSearchTerm,
-      teamId: statusFilterOne || "",
-      employeeStatus: statusFilterTwo || "",
-    },
-    { refetchOnMountOrArgChange: true }
-  );
-
-  // const { data: employeeStatusList } = useGetEmployeeStatusListQuery("");
+  // Fetch data
+  const { data, isLoading, isFetching } = useGetEmployeeQuery({
+    page,
+    limit: 12,
+    searchTerm: debouncedSearchTerm,
+    teamId: statusFilterOne || "",
+    employeeStatus: statusFilterTwo || "",
+  });
 
   const { data: teamListForFilter } = useGetTeamListForFilterQuery("");
   const { data: employeeStatusList } = useGetEmployeeStatusListQuery("");
 
-  if (isLoading) return <LoadingData />;
-
-  const teamOptions = teamListForFilter?.data.map(
-    (team: { name: string; _id: string }) => {
-      return { name: team.name, value: team._id };
-    }
+  // Memoize team options to prevent recalculation on every render
+  const teamOptions = useMemo(
+    () =>
+      teamListForFilter?.data?.map((team: { name: string; _id: string }) => ({
+        name: team.name,
+        value: team._id,
+      })) || [],
+    [teamListForFilter]
   );
 
   const employees = data?.data || [];
   const meta = data?.meta || { limit: 12, page: 1, totalItem: 1 };
-  console.log(data);
+
+  if (isLoading) return <LoadingData />;
+
   return (
-    <div>
+    <div className="space-y-6">
       {/* Search & Status Filter */}
       <SearchFilters
         searchTerm={searchTerm}
@@ -60,10 +61,10 @@ const ManageEmployeeSupervisor = () => {
         filterOne={statusFilterOne}
         setFilterOne={setStatusFilterOne}
         optionOne={teamOptions}
-        optionTwo={employeeStatusList?.data}
+        optionTwo={employeeStatusList?.data || []}
         filterTwo={statusFilterTwo}
         setFilterTwo={setStatusFilterTwo}
-        placeHolderOne={"Filter by Team"}
+        placeHolderOne="Filter by Team"
         placeHolderTwo="Filter by Status"
       />
 
@@ -76,7 +77,7 @@ const ManageEmployeeSupervisor = () => {
           page={page}
           limit={meta.limit}
           total={meta.totalItem}
-          onPageChange={(p) => setPage(p)}
+          onPageChange={setPage}
         />
       </div>
     </div>

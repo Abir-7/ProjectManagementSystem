@@ -2,6 +2,8 @@
 import React from "react";
 import PhaseTooltip from "./phase_tooltip";
 import TableLoading from "../../loading/table_loading";
+import { useAppSelector } from "@/redux/hooks";
+import Link from "next/link";
 
 const ProjectTable = ({
   projects,
@@ -12,6 +14,8 @@ const ProjectTable = ({
   isTooltip: boolean;
   isFetching: boolean;
 }) => {
+  const { user } = useAppSelector((state) => state.auth);
+
   if (isFetching) {
     return <TableLoading></TableLoading>;
   }
@@ -47,7 +51,15 @@ const ProjectTable = ({
           <tbody className="divide-y divide-border ">
             {projects.map((project: any, i: number) => (
               <tr key={i}>
-                <td className="px-4 py-2">{project.name}</td>
+                <td className="px-4 py-2">
+                  <Link
+                    href={`/${user?.role.toLocaleLowerCase()}/manage-projects/${
+                      project._id
+                    }`}
+                  >
+                    {project.name}
+                  </Link>
+                </td>
                 <td className="px-4 py-2">{project.clientName}</td>
                 <td className="px-4 py-2">${project.budget}</td>
                 <td className="px-4 py-2">{project.duration}</td>

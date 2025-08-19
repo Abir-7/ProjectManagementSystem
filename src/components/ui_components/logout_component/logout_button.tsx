@@ -7,6 +7,7 @@ import { LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 const LogoutButton = () => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const handleLogout = async () => {
@@ -14,6 +15,7 @@ const LogoutButton = () => {
     await fetch("/api/auth-data", {
       method: "DELETE",
     });
+    router.push("/login");
     dispatch(removeAuth());
   };
 

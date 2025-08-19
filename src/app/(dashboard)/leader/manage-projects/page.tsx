@@ -11,7 +11,7 @@ const Page: React.FC = () => {
     <div className="flex w-full  flex-col gap-6 ">
       <Tabs defaultValue="Manage Projects">
         <TabsList className="mx-auto mt-2">
-          <TabsTrigger value="Manage Projects">Manage Projects</TabsTrigger>
+          <TabsTrigger value="Manage Projects">Team Projects</TabsTrigger>
           <TabsTrigger value="Add Project">Add Project</TabsTrigger>
         </TabsList>
         <TabsContent value="Manage Projects">

@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
-import ProtectedRoute from "@/components/ui_components/ProtectedRoute/ProtectedRoute";
+import ProtectedRoute from "@/components/ui_components/protected_route/ProtectedRoute";
 import { AppSidebar } from "@/components/ui_components/side_bar/app_sidebar";
 import { ModeToggle } from "@/components/ui_components/theme_toggle_button/mode_toggle";
 

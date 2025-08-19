@@ -1,4 +1,4 @@
-import RoleBasedRoute from "@/components/ui_components/ProtectedRoute/RoleBasedRoute";
+import RoleBasedRoute from "@/components/ui_components/protected_route/RoleBasedRoute";
 import React, { ReactNode } from "react";
 
 const layout = ({ children }: { children: ReactNode }) => {
