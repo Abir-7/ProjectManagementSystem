@@ -32,7 +32,7 @@ interface ProjectFiltersProps {
 const SearchFilters: React.FC<ProjectFiltersProps> = ({
   searchTerm,
   setSearchTerm,
-  optionOne,
+  optionOne = [],
   optionTwo = [],
   setFilterOne,
   setFilterTwo,

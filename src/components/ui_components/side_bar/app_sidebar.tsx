@@ -38,9 +38,15 @@ export function AppSidebar() {
     },
     {
       title: "Manage Team",
-      url: "/supervisor/manage-team",
+      url: `/${role?.toLowerCase()}/manage-team`,
       icon: Calendar,
-      roles: userRoles.SUPERVISOR,
+      roles: [userRoles.SUPERVISOR],
+    },
+    {
+      title: "My Team",
+      url: `/${role?.toLowerCase()}/my-team`,
+      icon: Calendar,
+      roles: [userRoles.EMPLOYEE, userRoles.LEADER],
     },
     {
       title: "Manage Employee",
@@ -52,7 +58,13 @@ export function AppSidebar() {
       title: "Manage Project",
       url: `/${role?.toLowerCase()}/manage-projects`,
       icon: Calendar,
-      roles: [userRoles.LEADER, userRoles.EMPLOYEE, userRoles.SUPERVISOR],
+      roles: [userRoles.LEADER, userRoles.SUPERVISOR],
+    },
+    {
+      title: "Team Project",
+      url: `/${role?.toLowerCase()}/team-projects`,
+      icon: Calendar,
+      roles: [userRoles.EMPLOYEE],
     },
     {
       title: "Delivered Project",

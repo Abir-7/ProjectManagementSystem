@@ -2,7 +2,7 @@ import RoleBasedRoute from "@/components/ui_components/protected_route/RoleBased
 import React, { ReactNode } from "react";
 
 const layout = ({ children }: { children: ReactNode }) => {
-  return <RoleBasedRoute roles={["LEADER"]}>{children}</RoleBasedRoute>;
+  return <RoleBasedRoute roles={["EMPLOYEE"]}>{children}</RoleBasedRoute>;
 };
 
 export default layout;

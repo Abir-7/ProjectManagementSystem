@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+
+import { useState, useMemo } from "react";
 import LoadingData from "@/components/ui_components/loading/loading_data";
 
-import { DynamicPagination } from "@/components/ui_components/pagination/dynamic_pagination";
 import SearchFilters from "@/components/ui_components/search_filter/search_filter";
 import ProjectTable from "@/components/ui_components/table_data/project_table/project_table";
 import useDebounce from "@/lib/utils/debounce";
@@ -10,36 +11,44 @@ import {
   useGetMyTeamProjectsQuery,
   useGetProjectStatusListQuery,
 } from "@/redux/api/project_api/project_api";
-
-import { useState } from "react";
+import { DynamicPagination } from "@/components/ui_components/Pagination/dynamic_pagination";
 
 const ManageProjectLeader = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const debouncedSearchTerm = useDebounce(searchTerm, 300);
   const [statusFilter, setStatusFilter] = useState<string | undefined>("");
-
   const [page, setPage] = useState(1);
 
+  // Debounced search for API calls
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+
+  // Queries
   const { data, isLoading, isFetching } = useGetMyTeamProjectsQuery({
     page,
     limit: 10,
     searchTerm: debouncedSearchTerm,
     projectStatus: statusFilter || "",
   });
-  console.dir(
-    data?.data.map((dta: any) => dta.projects),
-    "KKK"
-  );
+
   const { data: projectStatus } = useGetProjectStatusListQuery("");
 
-  if (isLoading) {
-    return <LoadingData></LoadingData>;
-  }
+  // Derived memoized values
+  const projectStatusList = useMemo(
+    () => projectStatus?.data ?? [],
+    [projectStatus]
+  ) as any;
 
-  const projectStatusList = projectStatus?.data;
-  const projects = data?.data.map((dta: any) => dta.projects) || []; // fallback empty array
-  const meta = data?.meta || { limit: 10, page: 1, totalItem: 1 };
-  console.log(projectStatus);
+  const projects = useMemo(
+    () => data?.data?.map((d: any) => d.projects) ?? [],
+    [data]
+  );
+
+  const meta = useMemo(
+    () => data?.meta ?? { limit: 10, page: 1, totalItem: 1 },
+    [data]
+  );
+
+  if (isLoading) return <LoadingData />;
+
   return (
     <div>
       <SearchFilters
@@ -51,20 +60,18 @@ const ManageProjectLeader = () => {
         optionOne={projectStatusList}
       />
 
-      <ProjectTable
-        isFetching={isFetching}
-        isTooltip={true}
-        projects={projects}
-      />
+      <ProjectTable isFetching={isFetching} isTooltip projects={projects} />
 
-      <div className="pt-5">
-        <DynamicPagination
-          page={page}
-          limit={meta.limit}
-          total={meta.totalItem}
-          onPageChange={(p) => setPage(p)}
-        />
-      </div>
+      {meta.totalItem > 0 && (
+        <div className="pt-5">
+          <DynamicPagination
+            page={page}
+            limit={meta.limit}
+            total={meta.totalItem}
+            onPageChange={setPage}
+          />
+        </div>
+      )}
     </div>
   );
 };

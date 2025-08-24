@@ -3,7 +3,7 @@
 
 import { useState, useMemo } from "react";
 import LoadingData from "@/components/ui_components/loading/loading_data";
-import { DynamicPagination } from "@/components/ui_components/pagination/dynamic_pagination";
+
 import SearchFilters from "@/components/ui_components/search_filter/search_filter";
 import ProjectTable from "@/components/ui_components/table_data/project_table/project_table";
 import useDebounce from "@/lib/utils/debounce";
@@ -11,6 +11,7 @@ import {
   useGetMyTeamProjectsQuery,
   useGetProjectStatusListQuery,
 } from "@/redux/api/project_api/project_api";
+import { DynamicPagination } from "@/components/ui_components/Pagination/dynamic_pagination";
 
 const ManageProjectLeader = () => {
   const [searchTerm, setSearchTerm] = useState("");
